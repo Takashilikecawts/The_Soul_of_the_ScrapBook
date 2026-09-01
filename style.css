@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+
+:root{
+  --brown:#6f4e37; --cream:#fff8e9; --pink:#f7c8d8; --sage:#b8c9a8;
+  --gold:#e8b84a; --ink:#4d3b32; --paper:#fffdf5; --shadow:0 12px 30px rgba(80,55,35,.15);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--ink); font-family:Quicksand,sans-serif;
+  background:linear-gradient(135deg,#fff8e9,#f8e6d4);
+  min-height:100vh;
+}
+body:before{
+  content:""; position:fixed; inset:0; pointer-events:none; opacity:.2;
+  background-image:radial-gradient(#8c6b50 1px,transparent 1px); background-size:18px 18px;
+}
+nav{
+  position:sticky;top:0;z-index:20;display:flex;gap:10px;align-items:center;
+  padding:12px 20px;background:rgba(255,248,233,.94);backdrop-filter:blur(10px);
+  border-bottom:2px solid #ead5bc;
+}
+nav a{color:var(--brown);text-decoration:none;font-weight:700;padding:8px 12px;border-radius:12px}
+nav a:hover{background:#f2dfc7}
+.logo{font-family:Caveat;font-size:29px;margin-right:auto}
+.wrap{max-width:1150px;margin:auto;padding:28px 18px}
+.hero,.card{
+  background:rgba(255,253,245,.9);border:1px solid #ead7c2;border-radius:24px;
+  box-shadow:var(--shadow);padding:24px;
+}
+.hero{margin-bottom:20px}
+h1,h2,h3{font-family:Caveat,cursive;color:var(--brown)}
+h1{font-size:52px;margin:0 0 8px} h2{font-size:35px}
+button,.button{
+  border:0;border-radius:14px;padding:11px 16px;background:var(--brown);color:white;
+  font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;
+}
+button.secondary,.button.secondary{background:var(--sage);color:#30402c}
+button.gold{background:var(--gold);color:#513c17}
+button.pink{background:var(--pink);color:#5d3744}
+button:hover{transform:translateY(-1px);filter:brightness(1.03)}
+input,textarea,select{
+  width:100%;padding:12px;border:2px solid #ead7c2;border-radius:13px;
+  background:#fffdf8;color:var(--ink);font:inherit;margin:6px 0 14px;
+}
+textarea{min-height:180px;resize:vertical}
+label{font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.stat{padding:12px 16px;background:#f7ead9;border-radius:15px;font-weight:700}
+.cafe{
+  min-height:530px;border-radius:28px;padding:25px;position:relative;overflow:hidden;
+  background:linear-gradient(#f9dfbf,#ffeeda 55%,#d6b38d 56%);
+  border:8px solid #7b5437;box-shadow:var(--shadow);
+}
+.cafe.rainy{background:linear-gradient(#7d91a1,#d7e2e6 55%,#9c755a 56%)}
+.cafe.garden{background:linear-gradient(#cce7b7,#fff2ce 55%,#a97a55 56%)}
+.cafe.vintage{background:linear-gradient(#d6b08a,#f1d8b6 55%,#8d6042 56%)}
+.cafe.midnight{background:linear-gradient(#25243c,#5b5777 55%,#473323 56%);color:#fff}
+.window{position:absolute;right:35px;top:30px;width:230px;height:150px;border:12px solid #694a35;border-radius:15px;background:#bfe0f0}
+.midnight .window{background:#232743}
+.table{position:absolute;bottom:70px;left:15%;width:270px;height:85px;border-radius:50%;background:#8b5b3c;border:8px solid #6b452e}
+.plant{position:absolute;bottom:80px;right:12%;font-size:75px}
+.companion{position:absolute;bottom:125px;left:50%;font-size:88px;animation:bob 2.2s infinite ease-in-out}
+@keyframes bob{50%{transform:translateY(-9px) rotate(2deg)}}
+.cafe-title{position:relative;z-index:2;font-family:Caveat;font-size:42px}
+.coin{font-size:18px;color:#9b7117}
+.mood{font-size:52px}
+.memory{
+  padding:18px;border-radius:20px;background:#fffef8;border:2px dashed #d9bea0;
+  transform:rotate(-1deg);position:relative;
+}
+.memory:nth-child(even){transform:rotate(1deg)}
+.memory small{opacity:.7}
+.polaroid{background:white;padding:10px 10px 25px;box-shadow:0 8px 18px #0001;transform:rotate(-2deg)}
+.polaroid img{width:100%;height:150px;object-fit:cover}
+.badge{display:inline-block;padding:6px 10px;border-radius:20px;background:#f3d8a6;margin:3px}
+.locked{opacity:.55;filter:grayscale(.6)}
+.notice{padding:14px;border-radius:15px;background:#fff0b9;margin:12px 0}
+.secret{border:2px solid #8b6b91;background:#f3e8f6}
+footer{text-align:center;padding:35px;opacity:.7}
+@media(max-width:700px){nav{overflow:auto}.logo{min-width:170px}h1{font-size:42px}.window{width:150px}.table{width:210px}}

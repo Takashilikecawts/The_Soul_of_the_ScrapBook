@@ -1,0 +1,156 @@
+/* =========================
+   MAIN CAFÉ
+========================= */
+
+.cafe-game {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px;
+}
+
+.cafe-room {
+    background: #fff8e9;
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+}
+
+.cafe-room h1 {
+    font-size: 45px;
+}
+
+.coin-display {
+    display: inline-block;
+    background: #f4d48b;
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   CUSTOMER
+========================= */
+
+.customer-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
+}
+
+#customer {
+    font-size: 90px;
+    margin: 10px;
+}
+
+#order {
+    font-size: 20px;
+    min-height: 60px;
+}
+
+/* =========================
+   ANSWERS
+========================= */
+
+#choices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 600px;
+    margin: auto;
+}
+
+#choices button {
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    background: #b8c9a8;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#choices button:hover {
+    transform: scale(1.03);
+}
+
+#result {
+    min-height: 30px;
+    font-weight: bold;
+    margin: 15px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+#nextCustomerButton,
+#secretButton {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 15px;
+    background: #80638a;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#nextCustomerButton:hover,
+#secretButton:hover {
+    transform: scale(1.03);
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-box {
+    max-width: 600px;
+    margin: 25px auto;
+}
+
+.progress-bar {
+    height: 20px;
+    background: #eadbc7;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: #e8b84a;
+    transition: width .4s;
+}
+
+/* =========================
+   SECRET
+========================= */
+
+.secret-box {
+    background: #eee2f2;
+    border: 2px dashed #80638a;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 25px;
+}
+
+#secretButton {
+    display: none;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    #choices {
+        grid-template-columns: 1fr;
+    }
+
+    .cafe-room h1 {
+        font-size: 35px;
+    }
+}

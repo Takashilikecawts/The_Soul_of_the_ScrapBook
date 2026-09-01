@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shop — Soul Scrapbook Café</title><link rel="stylesheet" href="style.css"></head><body>
+    <nav>
+      <div class="logo">☕ Soul Scrapbook Café</div>
+      <a href="index.html">Home</a><a href="cafe.html">My Café</a>
+      <a href="scrapbook.html">Scrapbook</a><a href="Shop.html">Shop</a>
+      <a href="ghost-cafe.html">Companion</a>
+      <span class="stat">🪙 <span data-coins>0</span></span>
+    </nav>
+<main class="wrap"><section class="hero"><h1>🛍️ Café Shop</h1><p>Coins earned from memories and serving customers can be spent here.</p><div class="stat">🪙 <span data-coins>0</span></div></section>
+<div class="grid">
+<div class="card"><h2>🌧️ Rainy Café</h2><p>Soft blue-gray windows and a rainy atmosphere.</p><button onclick="buy('rainy',500)">500 coins</button></div>
+<div class="card"><h2>🌿 Garden Café</h2><p>Plants, sunlight, and a peaceful garden feeling.</p><button onclick="buy('garden',750)">750 coins</button></div>
+<div class="card"><h2>📻 Vintage Café</h2><p>Warm wood and nostalgic colors.</p><button onclick="buy('vintage',1000)">1,000 coins</button></div>
+<div class="card"><h2>🌙 Midnight Café</h2><p>Deep evening colors and candlelit vibes.</p><button onclick="buy('midnight',1500)">1,500 coins</button></div>
+<div class="card secret"><h2>👻 Afterlife Café</h2><p><b>SECRET — 100,000 coins</b></p><p>The final truth: the crash wasn't the beginning of your new life. You crossed into the afterlife, and the café has been serving ghosts all along. Unlock this as a <b>permanent</b> theme.</p><button class="gold" onclick="buy('afterlife',100000)">🗝️ Unlock 100,000</button></div>
+</div></main><div id="toast" style="position:fixed;right:18px;bottom:18px;background:#6f4e37;color:white;padding:13px 18px;border-radius:15px;opacity:0;transition:.25s;z-index:50"></div>
+<script>const oldToast=toast;toast=function(t){let x=document.getElementById("toast");x.textContent=t;x.style.opacity=1;setTimeout(()=>x.style.opacity=0,1800)};</script><script src="script.js"></script></body></html>

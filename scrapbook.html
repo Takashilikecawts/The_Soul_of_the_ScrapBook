@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scrapbook — Soul Scrapbook Café</title><link rel="stylesheet" href="style.css"></head><body>
+    <nav>
+      <div class="logo">☕ Soul Scrapbook Café</div>
+      <a href="index.html">Home</a><a href="cafe.html">My Café</a>
+      <a href="scrapbook.html">Scrapbook</a><a href="Shop.html">Shop</a>
+      <a href="ghost-cafe.html">Companion</a>
+      <span class="stat">🪙 <span data-coins>0</span></span>
+    </nav>
+<main class="wrap"><section class="hero"><h1>📖 Soul Scrapbook</h1>
+<p>Every page is a memory. Write privately on your device and earn coins for decorating your café.</p>
+<form id="memoryForm" class="card">
+<label>Page title</label><input name="title" placeholder="Today's Special...">
+<label>Your thoughts / story</label><textarea name="story" placeholder="Write whatever you want..."></textarea>
+<label>Mood</label><select name="mood"><option>🌤️ Calm</option><option>☀️ Happy</option><option>🌧️ Sad</option><option>⚡ Energetic</option><option>🌙 Nostalgic</option></select>
+<label>Optional quote</label><input name="quote" placeholder="A little sentence worth keeping...">
+<button type="submit">✨ Save Memory Page</button>
+</form></section>
+<h2>Your Pages</h2><div id="memoryList" class="grid"></div>
+<div class="notice">💡 The scrapbook uses browser storage in this version. It isn't a secure cloud vault; don't put passwords or highly sensitive information into it.</div>
+</main><div id="toast" style="position:fixed;right:18px;bottom:18px;background:#6f4e37;color:white;padding:13px 18px;border-radius:15px;opacity:0;transition:.25s;z-index:50"></div>
+<script>const oldToast=toast;toast=function(t){let x=document.getElementById("toast");x.textContent=t;x.style.opacity=1;setTimeout(()=>x.style.opacity=0,1800)};</script><script src="script.js"></script></body></html>

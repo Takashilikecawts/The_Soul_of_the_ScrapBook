@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ghost-Cafe — Soul Scrapbook Café</title><link rel="stylesheet" href="style.css"></head><body>
+    <nav>
+      <div class="logo">☕ Soul Scrapbook Café</div>
+      <a href="index.html">Home</a><a href="cafe.html">My Café</a>
+      <a href="scrapbook.html">Scrapbook</a><a href="Shop.html">Shop</a>
+      <a href="ghost-cafe.html">Companion</a>
+      <span class="stat">🪙 <span data-coins>0</span></span>
+    </nav>
+<main class="wrap"><section class="hero"><h1>🧸 Café Companion</h1><p>Your worker remembers more than they tell you.</p>
+<div class="card" style="text-align:center"><div style="font-size:110px" id="bigCompanion">🐈</div>
+<h2 id="companionLine">“Welcome back, boss. I think you've been away for a while.”</h2>
+<button onclick="chooseCompanion('🐈')">🐈 Cat</button> <button onclick="chooseCompanion('🐕')">🐕 Dog</button>
+<button onclick="chooseCompanion('👻')">👻 Ghost</button> <button onclick="chooseCompanion('🌱')">🌱 Plant</button>
+<button class="pink" onclick="promptMe()">💭 Give me a prompt</button></div></section>
+<h2>Truth Milestones</h2><div class="grid">
+<div class="card"><h3>1 page</h3><p>First Page — the café recognizes your handwriting.</p></div>
+<div class="card"><h3>10 pages</h3><p>Between Worlds — the windows begin behaving strangely.</p></div>
+<div class="card"><h3>50 pages</h3><p>Almost Home — your companion remembers the missing day.</p></div>
+<div class="card"><h3>200 pages</h3><p>The Final Secret — the locked door opens.</p></div>
+<div class="card"><h3>100,000 coins</h3><p>Afterlife Café — the permanent ending theme unlocks.</p></div>
+</div></main>
+<script>
+function promptMe(){const p=["What small moment made today better?","What place feels like home to you?","What would your café look like on your happiest day?","What memory would you put on the Memory Wall?"];alert("💭 Journal prompt:\n\n"+p[Math.floor(Math.random()*p.length)])}
+document.addEventListener("DOMContentLoaded",()=>document.getElementById("bigCompanion").textContent=state.companion)
+</script><div id="toast" style="position:fixed;right:18px;bottom:18px;background:#6f4e37;color:white;padding:13px 18px;border-radius:15px;opacity:0;transition:.25s;z-index:50"></div>
+<script>const oldToast=toast;toast=function(t){let x=document.getElementById("toast");x.textContent=t;x.style.opacity=1;setTimeout(()=>x.style.opacity=0,1800)};</script><script src="script.js"></script></body></html>

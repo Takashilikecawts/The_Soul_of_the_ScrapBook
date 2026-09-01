@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Soul Scrapbook Café</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cafe.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            ☕ Soul Scrapbook Café
+        </div>
+
+        <a href="index.html">Home</a>
+        <a href="cafe.html">My Café</a>
+        <a href="scrapbook.html">Scrapbook</a>
+        <a href="Shop.html">Shop</a>
+        <a href="ghost-cafe.html">Companion</a>
+
+        <span class="stat">
+            🪙 <span id="navCoins">0</span>
+        </span>
+    </nav>
+
+    <main class="cafe-game">
+        <section class="cafe-room">
+
+            <h1>☕ My Café</h1>
+
+            <p>
+                Welcome back, café keeper.
+            </p>
+
+            <div class="coin-display">
+                🪙 Coins:
+                <span id="coins">0</span>
+            </div>
+
+            <div class="customer-box">
+
+                <div id="customer">🐈</div>
+
+                <h2 id="customerName">
+                    Your customer is waiting...
+                </h2>
+
+                <p id="order">
+                    Preparing today's order...
+                </p>
+
+                <div id="choices"></div>
+
+                <p id="result"></p>
+
+            </div>
+
+            <button id="nextCustomerButton" type="button">
+                ☕ Next Customer
+            </button>
+
+            <div class="progress-box">
+
+                <h3>👻 Journey to the Truth</h3>
+
+                <p>
+                    <span id="progressCoins">0</span>
+                    / 100,000 coins
+                </p>
+
+                <div class="progress-bar">
+                    <div id="progress"></div>
+                </div>
+
+            </div>
+
+            <div class="secret-box">
+
+                <h2>🔐 Something is hidden...</h2>
+
+                <p id="secretText">
+                    Keep serving customers.
+                    Something strange is waiting at the end.
+                </p>
+
+                <button id="secretButton" type="button">
+                    👻 Enter the Afterlife Café
+                </button>
+
+            </div>
+
+        </section>
+    </main>
+
+    <script src="cafe.js"></script>
+
+</body>
+</html>
