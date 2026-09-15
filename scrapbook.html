@@ -1,22 +1,1527 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Scrapbook — Soul Scrapbook Café</title><link rel="stylesheet" href="style.css"></head><body>
-    <nav>
-      <div class="logo">☕ Soul Scrapbook Café</div>
-      <a href="index.html">Home</a><a href="cafe.html">My Café</a>
-      <a href="scrapbook.html">Scrapbook</a><a href="Shop.html">Shop</a>
-      <a href="ghost-cafe.html">Companion</a>
-      <span class="stat">🪙 <span data-coins>0</span></span>
-    </nav>
-<main class="wrap"><section class="hero"><h1>📖 Soul Scrapbook</h1>
-<p>Every page is a memory. Write privately on your device and earn coins for decorating your café.</p>
-<form id="memoryForm" class="card">
-<label>Page title</label><input name="title" placeholder="Today's Special...">
-<label>Your thoughts / story</label><textarea name="story" placeholder="Write whatever you want..."></textarea>
-<label>Mood</label><select name="mood"><option>🌤️ Calm</option><option>☀️ Happy</option><option>🌧️ Sad</option><option>⚡ Energetic</option><option>🌙 Nostalgic</option></select>
-<label>Optional quote</label><input name="quote" placeholder="A little sentence worth keeping...">
-<button type="submit">✨ Save Memory Page</button>
-</form></section>
-<h2>Your Pages</h2><div id="memoryList" class="grid"></div>
-<div class="notice">💡 The scrapbook uses browser storage in this version. It isn't a secure cloud vault; don't put passwords or highly sensitive information into it.</div>
-</main><div id="toast" style="position:fixed;right:18px;bottom:18px;background:#6f4e37;color:white;padding:13px 18px;border-radius:15px;opacity:0;transition:.25s;z-index:50"></div>
-<script>const oldToast=toast;toast=function(t){let x=document.getElementById("toast");x.textContent=t;x.style.opacity=1;setTimeout(()=>x.style.opacity=0,1800)};</script><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>Scrapbook | The Soul of the Scrapbook</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+HEADER
+===================================================== -->
+
+<header class="topbar">
+
+<h1>📖 Soul Scrapbook</h1>
+
+<div class="coins">
+
+✦
+<span class="coin-count">0</span>
+
+</div>
+
+</header>
+
+
+<!-- =====================================================
+NAVIGATION
+===================================================== -->
+
+<nav class="main-nav">
+
+<a href="index.html">
+Home
+</a>
+
+<a href="cafe.html">
+My Café
+</a>
+
+<a href="scrapbook.html">
+Scrapbook
+</a>
+
+<a href="Shop.html">
+Shop
+</a>
+
+<a href="afterlife.html">
+Truth
+</a>
+
+</nav>
+
+
+<!-- =====================================================
+MAIN
+===================================================== -->
+
+<main class="page-container">
+
+
+<!-- CREATE MEMORY -->
+
+<section class="scrapbook">
+
+<h1>
+Create a Memory
+</h1>
+
+<p class="center">
+
+Some memories stay with us.
+Some memories are ready to be released.
+
+</p>
+
+<br>
+
+
+<form id="memoryForm">
+
+
+<!-- TITLE -->
+
+<div class="form-group">
+
+<label for="memoryTitle">
+Memory Title
+</label>
+
+<input
+type="text"
+id="memoryTitle"
+placeholder="A peaceful afternoon..."
+required
+>
+
+</div>
+
+
+<!-- STORY -->
+
+<div class="form-group">
+
+<label for="memoryText">
+Your Story
+</label>
+
+<textarea
+id="memoryText"
+placeholder="Write about something you remember..."
+required
+></textarea>
+
+</div>
+
+
+<!-- IMAGE -->
+
+<div class="form-group">
+
+<label for="memoryImage">
+Photo
+</label>
+
+<input
+type="text"
+id="memoryImage"
+placeholder="images/my-photo.png"
+>
+
+<small>
+
+Optional.
+Add your image file to your
+images folder and put its filename here.
+
+</small>
+
+</div>
+
+
+<!-- SONG -->
+
+<div class="form-group">
+
+<label for="memorySong">
+Song
+</label>
+
+<input
+type="text"
+id="memorySong"
+placeholder="A song that reminds you of this..."
+>
+
+</div>
+
+
+<!-- TYPE -->
+
+<div class="form-group">
+
+<label for="memoryType">
+Memory Type
+</label>
+
+<select id="memoryType">
+
+<option>
+Small Happy Moment
+</option>
+
+<option>
+Funny Memory
+</option>
+
+<option>
+Important Event
+</option>
+
+<option>
+Achievement
+</option>
+
+<option>
+Comfort Moment
+</option>
+
+<option>
+Random Thought
+</option>
+
+</select>
+
+</div>
+
+
+<!-- SUBMIT -->
+
+<button
+type="submit"
+class="btn"
+>
+
+✦ Finish Memory
++250 Coins
+
+</button>
+
+
+</form>
+
+</section>
+
+
+
+<!-- =================================================
+MEMORY COLLECTION
+================================================= -->
+
+<section>
+
+<h2 class="section-title">
+
+Your Memories
+
+</h2>
+
+
+<div
+class="memory-grid"
+id="memoryGrid"
+></div>
+
+
+<div
+id="emptyMessage"
+class="paper center"
+style="display:none;"
+>
+
+<h2>
+Your scrapbook is empty.
+</h2>
+
+<br>
+
+<p>
+Create your first memory above.
+</p>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+GAME SCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+DEFAULT GAME DATA
+===================================================== */
+
+const defaultGame = {
+
+coins: 0,
+
+memories: [],
+
+unlockedThemes: [
+"cozy"
+],
+
+ownedAccessories: [],
+
+equippedTheme: "cozy",
+
+equippedAccessories: [],
+
+milestones: [],
+
+afterlifeUnlocked: false
+
+};
+
+
+/* =====================================================
+LOAD GAME
+===================================================== */
+
+function getGame() {
+
+const saved =
+localStorage.getItem(
+"soulScrapbookGame"
+);
+
+
+if (!saved) {
+
+localStorage.setItem(
+"soulScrapbookGame",
+JSON.stringify(defaultGame)
+);
+
+
+return JSON.parse(
+JSON.stringify(defaultGame)
+);
+
+}
+
+
+return JSON.parse(saved);
+
+}
+
+
+/* =====================================================
+SAVE GAME
+===================================================== */
+
+function saveGame(game) {
+
+localStorage.setItem(
+"soulScrapbookGame",
+JSON.stringify(game)
+);
+
+}
+
+
+/* =====================================================
+UPDATE COINS
+===================================================== */
+
+function updateUI() {
+
+const game =
+getGame();
+
+
+document
+.querySelectorAll(
+".coin-count"
+)
+.forEach(element => {
+
+element.textContent =
+game.coins.toLocaleString();
+
+});
+
+}
+
+
+/* =====================================================
+CREATE A MEMORY
+===================================================== */
+
+document
+.getElementById("memoryForm")
+.addEventListener(
+"submit",
+function(event) {
+
+event.preventDefault();
+
+
+const game =
+getGame();
+
+
+/* Get information */
+
+const title =
+document
+.getElementById(
+"memoryTitle"
+)
+.value
+.trim();
+
+
+const text =
+document
+.getElementById(
+"memoryText"
+)
+.value
+.trim();
+
+
+const image =
+document
+.getElementById(
+"memoryImage"
+)
+.value
+.trim();
+
+
+const song =
+document
+.getElementById(
+"memorySong"
+)
+.value
+.trim();
+
+
+const type =
+document
+.getElementById(
+"memoryType"
+)
+.value;
+
+
+/* Create memory object */
+
+const memory = {
+
+id:
+Date.now(),
+
+title:
+title,
+
+text:
+text,
+
+image:
+image,
+
+song:
+song,
+
+type:
+type,
+
+date:
+new Date()
+.toLocaleDateString(),
+
+coins:
+250
+
+};
+
+
+/* Save memory */
+
+game.memories.push(
+memory
+);
+
+
+/* Reward */
+
+game.coins +=
+250;
+
+
+saveGame(game);
+
+
+/* Animation */
+
+createMemoryParticles();
+
+
+/* Clear form */
+
+document
+.getElementById(
+"memoryForm"
+)
+.reset();
+
+
+/* Update page */
+
+renderMemories();
+
+updateUI();
+
+
+/* Check story */
+
+checkMilestones(
+game
+);
+
+}
+);
+
+
+/* =====================================================
+DISPLAY MEMORIES
+===================================================== */
+
+function renderMemories() {
+
+const game =
+getGame();
+
+
+const grid =
+document.getElementById(
+"memoryGrid"
+);
+
+
+const empty =
+document.getElementById(
+"emptyMessage"
+);
+
+
+grid.innerHTML = "";
+
+
+if (
+game.memories.length === 0
+) {
+
+empty.style.display =
+"block";
+
+return;
+
+}
+
+
+empty.style.display =
+"none";
+
+
+/*
+Show newest memories first
+*/
+
+const memories =
+[...game.memories]
+.reverse();
+
+
+memories.forEach(
+memory => {
+
+
+const card =
+document.createElement(
+"article"
+);
+
+
+card.className =
+"memory-card";
+
+
+/*
+Random scrapbook angle
+*/
+
+const rotation =
+Math.random() * 4 - 2;
+
+
+card.style.setProperty(
+"--rotation",
+rotation
+);
+
+
+/* Image */
+
+let imageHTML = "";
+
+
+if (
+memory.image
+) {
+
+imageHTML = `
+
+<img
+src="${escapeAttribute(
+memory.image
+)}"
+alt="Memory photo"
+onerror="
+this.style.display='none'
+"
+>
+
+`;
+
+}
+
+
+/* Song */
+
+let songHTML = "";
+
+
+if (
+memory.song
+) {
+
+songHTML = `
+
+<p>
+🎵
+${escapeHTML(
+memory.song
+)}
+</p>
+
+`;
+
+}
+
+
+/* Card */
+
+card.innerHTML = `
+
+<h3>
+${escapeHTML(
+memory.title
+)}
+</h3>
+
+
+<div class="memory-date">
+
+${escapeHTML(
+memory.date
+)}
+
+</div>
+
+
+${imageHTML}
+
+
+<p>
+
+${escapeHTML(
+memory.text
+)}
+
+</p>
+
+
+<br>
+
+
+<small>
+
+${escapeHTML(
+memory.type
+)}
+
+</small>
+
+
+${songHTML}
+
+
+<button
+class="let-go-btn"
+onclick="
+letGoOfMemory(
+${memory.id},
+this
+)
+"
+>
+
+✦ Let Go
+
+</button>
+
+`;
+
+
+grid.appendChild(
+card
+);
+
+}
+);
+
+}
+
+
+/* =====================================================
+LET GO OF MEMORY
+===================================================== */
+
+function letGoOfMemory(
+memoryId,
+button
+) {
+
+
+const game =
+getGame();
+
+
+const card =
+button.closest(
+".memory-card"
+);
+
+
+/*
+Find the memory
+*/
+
+const memoryIndex =
+game.memories.findIndex(
+memory =>
+memory.id ===
+memoryId
+);
+
+
+if (
+memoryIndex === -1
+) {
+
+return;
+
+}
+
+
+/*
+Prevent clicking twice
+*/
+
+card.style.pointerEvents =
+"none";
+
+
+/*
+Start animation
+*/
+
+card.classList.add(
+"let-go"
+);
+
+
+/*
+Create particles
+*/
+
+createReleaseParticles(
+card
+);
+
+
+/*
+Remove after animation
+*/
+
+setTimeout(
+function() {
+
+
+game.memories.splice(
+memoryIndex,
+1
+);
+
+
+saveGame(game);
+
+
+renderMemories();
+
+
+updateUI();
+
+
+showLetGoMessage();
+
+
+},
+1800
+);
+
+}
+
+
+/* =====================================================
+RELEASE PARTICLES
+===================================================== */
+
+function createReleaseParticles(
+card
+) {
+
+
+const rect =
+card.getBoundingClientRect();
+
+
+const centerX =
+rect.left +
+rect.width / 2;
+
+
+const centerY =
+rect.top +
+rect.height / 2;
+
+
+/*
+Create lots of tiny particles
+*/
+
+for (
+let i = 0;
+i < 30;
+i++
+) {
+
+
+const particle =
+document.createElement(
+"div"
+);
+
+
+particle.className =
+"release-particle";
+
+
+particle.style.left =
+centerX + "px";
+
+
+particle.style.top =
+centerY + "px";
+
+
+/*
+Random direction
+*/
+
+const x =
+(
+Math.random()
+- 0.5
+) * 350;
+
+
+const y =
+-(
+Math.random()
+* 250
+);
+
+
+particle.style.setProperty(
+"--particle-x",
+x + "px"
+);
+
+
+particle.style.setProperty(
+"--particle-y",
+y + "px"
+);
+
+
+document.body.appendChild(
+particle
+);
+
+
+setTimeout(
+() =>
+particle.remove(),
+1500
+);
+
+}
+
+
+/*
+Magical star
+*/
+
+const symbol =
+document.createElement(
+"div"
+);
+
+
+symbol.className =
+"release-symbol";
+
+
+symbol.textContent =
+"✦";
+
+
+symbol.style.left =
+centerX + "px";
+
+
+symbol.style.top =
+centerY + "px";
+
+
+document.body.appendChild(
+symbol
+);
+
+
+setTimeout(
+() =>
+symbol.remove(),
+1500
+);
+
+}
+
+
+/* =====================================================
+MESSAGE AFTER LETTING GO
+===================================================== */
+
+function showLetGoMessage() {
+
+
+const popup =
+document.createElement(
+"div"
+);
+
+
+popup.className =
+"memory-popup";
+
+
+popup.innerHTML = `
+
+<div class="memory-popup-inner">
+
+
+<div class="popup-icon">
+✦
+</div>
+
+
+<h2>
+Memory Released
+</h2>
+
+
+<p>
+
+You let this memory go.
+
+</p>
+
+
+<p>
+
+Not every memory needs
+to stay with you forever.
+
+</p>
+
+
+<button
+onclick="
+this
+.closest('.memory-popup')
+.remove()
+"
+>
+
+Continue
+
+</button>
+
+
+</div>
+
+`;
+
+
+document.body.appendChild(
+popup
+);
+
+}
+
+
+/* =====================================================
+MEMORY CREATION PARTICLES
+===================================================== */
+
+function createMemoryParticles() {
+
+
+for (
+let i = 0;
+i < 20;
+i++
+) {
+
+
+const particle =
+document.createElement(
+"div"
+);
+
+
+particle.className =
+"memory-particle";
+
+
+particle.textContent =
+"✦";
+
+
+particle.style.left =
+Math.random() * 100 +
+"vw";
+
+
+particle.style.top =
+Math.random() * 100 +
+"vh";
+
+
+document.body.appendChild(
+particle
+);
+
+
+setTimeout(
+() =>
+particle.remove(),
+1500
+);
+
+}
+
+}
+
+
+/* =====================================================
+STORY MILESTONES
+===================================================== */
+
+const milestones = [
+
+{
+coins: 1000,
+
+message:
+"Something about this café feels strangely familiar."
+},
+
+
+{
+coins: 5000,
+
+message:
+"A scrapbook page appears that you don't remember writing."
+},
+
+
+{
+coins: 10000,
+
+message:
+"One of your companions seems to remember you."
+},
+
+
+{
+coins: 25000,
+
+message:
+"You remember something about the accident."
+},
+
+
+{
+coins: 50000,
+
+message:
+"The café feels less like a place you own."
+},
+
+
+{
+coins: 75000,
+
+message:
+"The accident and the café are connected."
+},
+
+
+{
+coins: 100000,
+
+message:
+"You finally remember. You never woke up."
+}
+
+];
+
+
+/* =====================================================
+CHECK MILESTONES
+===================================================== */
+
+function checkMilestones(game) {
+
+
+if (
+!game.milestones
+) {
+
+game.milestones =
+[];
+
+}
+
+
+milestones.forEach(
+milestone => {
+
+
+if (
+
+game.coins >=
+milestone.coins
+
+&&
+
+!game.milestones
+.includes(
+milestone.coins
+)
+
+) {
+
+
+game.milestones.push(
+milestone.coins
+);
+
+
+saveGame(game);
+
+
+showMilestonePopup(
+milestone
+);
+
+}
+
+}
+);
+
+
+/*
+SECRET 100,000 ENDING
+*/
+
+if (
+game.coins >= 100000
+&&
+!game.afterlifeUnlocked
+) {
+
+
+game.afterlifeUnlocked =
+true;
+
+
+/*
+Permanently unlock theme
+*/
+
+if (
+!game.unlockedThemes
+.includes(
+"afterlife"
+)
+) {
+
+game.unlockedThemes.push(
+"afterlife"
+);
+
+}
+
+
+saveGame(game);
+
+
+setTimeout(
+showFinalEnding,
+1000
+);
+
+}
+
+}
+
+
+/* =====================================================
+MILESTONE POPUP
+===================================================== */
+
+function showMilestonePopup(
+milestone
+) {
+
+
+const popup =
+document.createElement(
+"div"
+);
+
+
+popup.className =
+"memory-popup";
+
+
+popup.innerHTML = `
+
+<div class="memory-popup-inner">
+
+
+<div class="popup-icon">
+✦
+</div>
+
+
+<h2>
+Memory Unlocked
+</h2>
+
+
+<p>
+
+${escapeHTML(
+milestone.message
+)}
+
+</p>
+
+
+<small>
+
+${milestone.coins.toLocaleString()}
+coins
+
+</small>
+
+
+<br>
+
+
+<button
+onclick="
+this
+.closest('.memory-popup')
+.remove()
+"
+>
+
+Continue
+
+</button>
+
+
+</div>
+
+`;
+
+
+document.body.appendChild(
+popup
+);
+
+}
+
+
+/* =====================================================
+FINAL ENDING
+===================================================== */
+
+function showFinalEnding() {
+
+
+const popup =
+document.createElement(
+"div"
+);
+
+
+popup.className =
+"memory-popup";
+
+
+popup.innerHTML = `
+
+<div class="memory-popup-inner">
+
+
+<div class="popup-icon">
+☾
+</div>
+
+
+<h1>
+The Final Memory
+</h1>
+
+
+<p>
+
+You remember the accident.
+
+</p>
+
+
+<p>
+
+You never woke up in the world
+you remembered.
+
+</p>
+
+
+<p>
+
+The café was waiting for you
+somewhere beyond it.
+
+</p>
+
+
+<p>
+
+Your companions were never
+ordinary employees.
+
+They were souls waiting for you.
+
+</p>
+
+
+<h2>
+
+Welcome to the
+Afterlife Café.
+
+</h2>
+
+
+<br>
+
+
+<button
+onclick="
+location.href =
+'ghost-cafe.html'
+"
+>
+
+Enter the Afterlife Café
+
+</button>
+
+
+</div>
+
+`;
+
+
+document.body.appendChild(
+popup
+);
+
+}
+
+
+/* =====================================================
+TEXT SAFETY
+===================================================== */
+
+function escapeHTML(
+text
+) {
+
+
+const div =
+document.createElement(
+"div"
+);
+
+
+div.textContent =
+text;
+
+
+return div.innerHTML;
+
+}
+
+
+function escapeAttribute(
+text
+) {
+
+
+return text
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+);
+
+}
+
+
+/* =====================================================
+START PAGE
+===================================================== */
+
+updateUI();
+
+renderMemories();
+
+
+</script>
+<script>
+
+function applySavedTheme() {
+
+const game =
+JSON.parse(
+localStorage.getItem(
+"soulScrapbookGame"
+)
+) || {};
+
+const theme =
+game.equippedTheme ||
+"cozy";
+
+document.body.classList.remove(
+"theme-cozy",
+"theme-rainy",
+"theme-garden",
+"theme-vintage",
+"theme-midnight",
+"theme-afterlife"
+);
+
+document.body.classList.add(
+"theme-" + theme
+);
+}
+
+applySavedTheme();
+
+</script>
+
+</body>
+
+</html>

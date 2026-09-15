@@ -1,14 +1,210 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Contact — Soul Scrapbook Café</title><link rel="stylesheet" href="style.css"></head><body>
-    <nav>
-      <div class="logo">☕ Soul Scrapbook Café</div>
-      <a href="index.html">Home</a><a href="cafe.html">My Café</a>
-      <a href="scrapbook.html">Scrapbook</a><a href="Shop.html">Shop</a>
-      <a href="ghost-cafe.html">Companion</a>
-      <span class="stat">🪙 <span data-coins>0</span></span>
-    </nav>
-<main class="wrap"><section class="hero"><h1>💌 Contact</h1><p>For this prototype, this page is a local feedback form. A real published version would need a backend/email service.</p>
-<form class="card" onsubmit="event.preventDefault();alert('Thank you for the message!');this.reset()">
-<label>Name</label><input placeholder="Your name"><label>Message</label><textarea placeholder="Tell the café keeper what you think..."></textarea><button>Send</button>
-</form></section></main><div id="toast" style="position:fixed;right:18px;bottom:18px;background:#6f4e37;color:white;padding:13px 18px;border-radius:15px;opacity:0;transition:.25s;z-index:50"></div>
-<script>const oldToast=toast;toast=function(t){let x=document.getElementById("toast");x.textContent=t;x.style.opacity=1;setTimeout(()=>x.style.opacity=0,1800)};</script><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>About</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<header class="topbar">
+
+<h1>
+The Café
+</h1>
+
+<div class="coins">
+
+✦
+<span class="coin-count">
+0
+</span>
+
+</div>
+
+</header>
+
+
+<nav class="main-nav">
+
+<a href="index.html">
+Home
+</a>
+
+<a href="cafe.html">
+My Café
+</a>
+
+<a href="scrapbook.html">
+Scrapbook
+</a>
+
+<a href="Shop.html">
+Shop
+</a>
+
+<a href="afterlife.html">
+Truth
+</a>
+
+</nav>
+
+
+<main class="page-container">
+
+
+<section class="paper">
+
+<h1>
+About The Soul of the Scrapbook
+</h1>
+
+<br>
+
+<p>
+
+The Soul of the Scrapbook is a cozy
+memory café where your memories become
+part of the world around you.
+
+</p>
+
+<br>
+
+<p>
+
+Write memories, decorate your café,
+serve customers and slowly discover
+why you woke up without remembering
+your past.
+
+</p>
+
+<br>
+
+<p>
+
+Every memory brings you closer
+to the truth.
+
+</p>
+
+</section>
+
+
+<section class="paper center">
+
+<h2>
+Café Features
+</h2>
+
+<br>
+
+<p>
+Scrapbook memories
+</p>
+
+<p>
+Café customization
+</p>
+
+<p>
+Customer mini-game
+</p>
+
+<p>
+Collectible decorations
+</p>
+
+<p>
+Multiple café themes
+</p>
+
+<p>
+Hidden story milestones
+</p>
+
+<p>
+secret ending
+</p>
+
+<p>
+By
+Chanawee Pumwongpitak M.3/4 No.3 ID:38488
+</p>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+const game =
+JSON.parse(
+localStorage.getItem(
+"soulScrapbookGame"
+)
+) || { coins: 0 };
+
+
+document
+.querySelectorAll(
+".coin-count"
+)
+.forEach(
+el =>
+el.textContent =
+game.coins.toLocaleString()
+);
+
+</script>
+<script>
+
+function applySavedTheme() {
+
+const game =
+JSON.parse(
+localStorage.getItem(
+"soulScrapbookGame"
+)
+) || {};
+
+const theme =
+game.equippedTheme ||
+"cozy";
+
+document.body.classList.remove(
+"theme-cozy",
+"theme-rainy",
+"theme-garden",
+"theme-vintage",
+"theme-midnight",
+"theme-afterlife"
+);
+
+document.body.classList.add(
+"theme-" + theme
+);
+}
+
+applySavedTheme();
+
+</script>
+</body>
+
+</html>

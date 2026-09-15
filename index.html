@@ -1,23 +1,184 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Index — Soul Scrapbook Café</title><link rel="stylesheet" href="style.css"></head><body>
-    <nav>
-      <div class="logo">☕ Soul Scrapbook Café</div>
-      <a href="index.html">Home</a><a href="cafe.html">My Café</a>
-      <a href="scrapbook.html">Scrapbook</a><a href="Shop.html">Shop</a>
-      <a href="ghost-cafe.html">Companion</a>
-      <span class="stat">🪙 <span data-coins>0</span></span>
-    </nav>
-<main class="wrap">
-<section class="hero">
-<h1>☕ Welcome to the Soul Scrapbook</h1>
-<p>A cozy digital café for thoughts, memories, stories, photos, drawings, quotes, and little moments you don't want to lose.</p>
-<div class="stats"><div class="stat">🪙 <span data-coins>0</span> coins</div><div class="stat">📖 <span data-memories>0</span> memories</div></div>
-<a class="button" href="scrapbook.html">Write your first page</a>
-</section>
-<div class="grid">
-<div class="card"><h2>🌱 A gentle beginning</h2><p>You wake up behind the counter of a café you apparently own. Your memories are blurry, but a scrapbook sits beside the register.</p></div>
-<div class="card"><h2>🧸 Your companion</h2><p>A strange little worker greets you as if you've known each other forever.</p><a class="button secondary" href="ghost-cafe.html">Meet them</a></div>
-<div class="card"><h2>🔐 The hidden story</h2><p>Milestones slowly reveal clues about why the café feels strangely familiar. At 100,000 coins, a permanent secret theme becomes available.</p></div>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>The Soul of the Scrapbook</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<header class="topbar">
+
+<h1>The Soul of the Scrapbook</h1>
+
+<div class="coins">
+✦ <span class="coin-count">0</span>
 </div>
-</main><div id="toast" style="position:fixed;right:18px;bottom:18px;background:#6f4e37;color:white;padding:13px 18px;border-radius:15px;opacity:0;transition:.25s;z-index:50"></div>
-<script>const oldToast=toast;toast=function(t){let x=document.getElementById("toast");x.textContent=t;x.style.opacity=1;setTimeout(()=>x.style.opacity=0,1800)};</script><script src="script.js"></script></body></html>
+
+</header>
+
+
+<nav class="main-nav">
+
+<a href="index.html">Home</a>
+
+<a href="cafe.html">My Café</a>
+
+<a href="scrapbook.html">Scrapbook</a>
+
+<a href="Shop.html">Shop</a>
+
+<a href="afterlife.html">Truth</a>
+
+<a href="contact.html">About</a>
+
+</nav>
+
+
+<main class="page-container">
+
+<section class="hero">
+
+<h1>☕</h1>
+
+<h1>
+The Soul of the Scrapbook
+</h1>
+
+<p>
+
+You bought a little café.
+
+You have employees.
+
+You have a scrapbook.
+
+And somehow...
+
+you can't remember anything else.
+
+</p>
+
+
+<div class="hero-buttons">
+
+<a
+href="cafe.html"
+class="btn"
+>
+Enter My Café
+</a>
+
+<a
+href="scrapbook.html"
+class="btn secondary"
+>
+Open Scrapbook
+</a>
+
+</div>
+
+</section>
+
+
+<section class="paper center">
+
+<h2>
+Rebuild your memories.
+</h2>
+
+<br>
+
+<p>
+Create scrapbook pages, serve customers,
+collect coins, decorate your café,
+and slowly uncover the truth.
+</p>
+
+<br>
+
+<p>
+But be careful...
+
+Some memories are better left forgotten.
+</p>
+
+</section>
+
+</main>
+
+
+<script>
+
+function updateCoins() {
+
+const game =
+JSON.parse(
+localStorage.getItem(
+"soulScrapbookGame"
+)
+) || { coins: 0 };
+
+document
+.querySelectorAll(".coin-count")
+.forEach(el => {
+
+el.textContent =
+game.coins.toLocaleString();
+
+});
+
+}
+
+updateCoins();
+
+</script>
+<script>
+
+function applySavedTheme() {
+
+const game =
+JSON.parse(
+localStorage.getItem(
+"soulScrapbookGame"
+)
+) || {};
+
+const theme =
+game.equippedTheme ||
+"cozy";
+
+document.body.classList.remove(
+"theme-cozy",
+"theme-rainy",
+"theme-garden",
+"theme-vintage",
+"theme-midnight",
+"theme-afterlife"
+);
+
+document.body.classList.add(
+"theme-" + theme
+);
+}
+
+applySavedTheme();
+
+</script>
+
+</body>
+
+</html>
