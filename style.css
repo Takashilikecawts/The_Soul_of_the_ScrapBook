@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700&display=swap');
 
 
-/* ---------- BASIC ---------- */
+/* =========================================================
+SOUL OF THE SCRAPBOOK
+COMPLETE STYLE SHEET
+========================================================= */
+
+
+/* =========================================================
+BASIC
+========================================================= */
 
 * {
 box-sizing: border-box;
@@ -9,38 +17,43 @@ margin: 0;
 padding: 0;
 }
 
+html {
+min-height: 100%;
+}
+
 body {
 min-height: 100vh;
 
 font-family: "DM Mono", monospace;
 
-color: #5a321f;
+color: var(--text);
 
-background-color: #f8e8cc;
+background-color: var(--bg);
 
 background-image:
-radial-gradient(#d99b65 1px, transparent 1px);
+radial-gradient(
+var(--dot) 1px,
+transparent 1px
+);
 
 background-size: 18px 18px;
 
 transition:
-background-color 0.5s,
-color 0.5s;
+background-color 0.5s ease,
+color 0.5s ease;
 }
-
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
 font-family: "Playfair Display", serif;
 }
-
 
 a {
 color: inherit;
 text-decoration: none;
 }
-
 
 button {
 font-family: inherit;
@@ -48,9 +61,205 @@ cursor: pointer;
 }
 
 
-/* ---------- HEADER ---------- */
+/* =========================================================
+DEFAULT THEME
+========================================================= */
+
+body,
+body.theme-cozy {
+
+--bg: #f8e8cc;
+
+--paper: #fff5e4;
+
+--paper-light: #fff8eb;
+
+--paper-dark: #f2d3a8;
+
+--border: #d58b55;
+
+--border-dark: #9d5936;
+
+--button: #d9824f;
+
+--button-dark: #9e5935;
+
+--text: #5a321f;
+
+--accent: #ffe1a8;
+
+--shadow: #d9a06f;
+
+--dot: #d99b65;
+}
+
+
+/* =========================================================
+RAINY THEME
+========================================================= */
+
+body.theme-rainy {
+
+--bg: #aebfc8;
+
+--paper: #e4edf1;
+
+--paper-light: #edf4f7;
+
+--paper-dark: #c1d2d9;
+
+--border: #6d8b99;
+
+--border-dark: #496775;
+
+--button: #6f95a5;
+
+--button-dark: #496775;
+
+--text: #304650;
+
+--accent: #c2d8df;
+
+--shadow: #819da9;
+
+--dot: #6f8f9d;
+}
+
+
+/* =========================================================
+GARDEN THEME
+========================================================= */
+
+body.theme-garden {
+
+--bg: #b9cda9;
+
+--paper: #edf2df;
+
+--paper-light: #f3f6e9;
+
+--paper-dark: #cfddbd;
+
+--border: #7c9969;
+
+--border-dark: #567148;
+
+--button: #829f6c;
+
+--button-dark: #567148;
+
+--text: #3e5235;
+
+--accent: #d9df9c;
+
+--shadow: #92ad7d;
+
+--dot: #79966a;
+}
+
+
+/* =========================================================
+VINTAGE THEME
+========================================================= */
+
+body.theme-vintage {
+
+--bg: #cdb28b;
+
+--paper: #f1dfc1;
+
+--paper-light: #f5e8d0;
+
+--paper-dark: #dbc09a;
+
+--border: #a47755;
+
+--border-dark: #765238;
+
+--button: #a47755;
+
+--button-dark: #765238;
+
+--text: #513827;
+
+--accent: #d7b878;
+
+--shadow: #ae875e;
+
+--dot: #98704e;
+}
+
+
+/* =========================================================
+MIDNIGHT THEME
+========================================================= */
+
+body.theme-midnight {
+
+--bg: #25283d;
+
+--paper: #36394f;
+
+--paper-light: #41455e;
+
+--paper-dark: #202336;
+
+--border: #8178a5;
+
+--border-dark: #625a83;
+
+--button: #766d9c;
+
+--button-dark: #544c73;
+
+--text: #eeeafa;
+
+--accent: #aaa0d0;
+
+--shadow: #171a2b;
+
+--dot: #625d7d;
+}
+
+
+/* =========================================================
+AFTERLIFE THEME
+========================================================= */
+
+body.theme-afterlife {
+
+--bg: #211e2b;
+
+--paper: #35303f;
+
+--paper-light: #403949;
+
+--paper-dark: #191721;
+
+--border: #9b82a9;
+
+--border-dark: #705879;
+
+--button: #9775a8;
+
+--button-dark: #674b75;
+
+--text: #f0e7f3;
+
+--accent: #c9afd5;
+
+--shadow: #15131d;
+
+--dot: #776080;
+}
+
+
+/* =========================================================
+HEADER
+========================================================= */
 
 .topbar {
+
 width: 100%;
 
 padding: 18px 6%;
@@ -61,9 +270,9 @@ justify-content: space-between;
 
 align-items: center;
 
-background: #fff5e4;
+background: var(--paper);
 
-border-bottom: 3px dashed #d58b55;
+border-bottom: 3px dashed var(--border);
 
 position: sticky;
 
@@ -72,19 +281,31 @@ top: 0;
 z-index: 50;
 
 box-shadow:
-0 4px 0 rgba(126, 70, 39, 0.08);
-}
+0 4px 0 var(--shadow);
 
+transition:
+background 0.5s,
+border-color 0.5s;
+}
 
 .topbar h1 {
 font-size: 25px;
+
+color: var(--text);
 }
 
 
-.coins {
-background: #ffe1a8;
+/* =========================================================
+COINS
+========================================================= */
 
-border: 2px solid #c87943;
+.coins {
+
+background: var(--accent);
+
+border: 2px solid var(--border-dark);
+
+color: var(--text);
 
 padding: 9px 16px;
 
@@ -93,13 +314,21 @@ border-radius: 30px;
 font-weight: bold;
 
 box-shadow:
-3px 3px 0 #bd7546;
+3px 3px 0 var(--shadow);
+
+transition:
+background 0.5s,
+color 0.5s,
+border-color 0.5s;
 }
 
 
-/* ---------- NAVIGATION ---------- */
+/* =========================================================
+NAVIGATION
+========================================================= */
 
 .main-nav {
+
 display: flex;
 
 flex-wrap: wrap;
@@ -109,69 +338,87 @@ justify-content: center;
 gap: 10px;
 
 padding: 18px;
+
+background: transparent;
 }
 
-
 .main-nav a {
+
 padding: 10px 16px;
 
-background: #fff5e4;
+background: var(--paper);
 
-border: 2px solid #d58b55;
+color: var(--text);
+
+border: 2px solid var(--border);
 
 border-radius: 12px;
 
 transition: 0.2s;
 }
 
-
 .main-nav a:hover {
+
 transform: translateY(-3px);
 
-background: #ffe0b5;
+background: var(--accent);
 }
 
 
-/* ---------- CONTAINERS ---------- */
+/* =========================================================
+CONTAINERS
+========================================================= */
 
 .page-container {
+
 width: min(1100px, 92%);
 
 margin: 35px auto 70px;
 }
 
-
 .center {
 text-align: center;
 }
 
-
 .section-title {
+
 text-align: center;
 
 margin-bottom: 25px;
 
 font-size: 34px;
+
+color: var(--text);
 }
 
 
-.paper {
-background: #fff8eb;
+/* =========================================================
+PAPER
+========================================================= */
 
-border: 2px solid #d79561;
+.paper {
+
+background: var(--paper-light);
+
+color: var(--text);
+
+border: 2px solid var(--border);
 
 border-radius: 18px;
 
 padding: 25px;
 
 box-shadow:
-7px 7px 0 #d9a06f;
+7px 7px 0 var(--shadow);
 }
 
 
-/* ---------- HERO ---------- */
+/* =========================================================
+HERO
+========================================================= */
 
 .hero {
+
 max-width: 850px;
 
 margin: 60px auto;
@@ -180,25 +427,29 @@ text-align: center;
 
 padding: 55px 30px;
 
-background: #fff5e4;
+background: var(--paper);
 
-border: 3px dashed #cf814b;
+color: var(--text);
+
+border: 3px dashed var(--border);
 
 border-radius: 25px;
 
 box-shadow:
-10px 10px 0 #dca36f;
+10px 10px 0 var(--shadow);
 }
 
-
 .hero h1 {
+
 font-size: clamp(42px, 7vw, 75px);
 
 margin-bottom: 15px;
+
+color: var(--text);
 }
 
-
 .hero p {
+
 line-height: 1.8;
 
 max-width: 650px;
@@ -206,8 +457,8 @@ max-width: 650px;
 margin: auto;
 }
 
-
 .hero-buttons {
+
 display: flex;
 
 justify-content: center;
@@ -220,12 +471,15 @@ margin-top: 28px;
 }
 
 
-/* ---------- BUTTONS ---------- */
+/* =========================================================
+BUTTONS
+========================================================= */
 
 .btn {
-border: 2px solid #9e5935;
 
-background: #d9824f;
+border: 2px solid var(--button-dark);
+
+background: var(--button);
 
 color: white;
 
@@ -236,33 +490,68 @@ border-radius: 12px;
 transition: 0.2s;
 
 box-shadow:
-3px 3px 0 #9d5838;
+3px 3px 0 var(--button-dark);
 }
-
 
 .btn:hover {
+
 transform: translateY(-2px);
 
-box-shadow:
-5px 5px 0 #9d5838;
-}
+background: var(--accent);
 
+color: var(--text);
+
+box-shadow:
+5px 5px 0 var(--button-dark);
+}
 
 .btn.secondary {
-background: #fff0d4;
 
-color: #713d27;
+background: var(--paper-light);
+
+color: var(--text);
+
+border-color: var(--border);
 }
-
 
 .btn.dark {
-background: #75432d;
+
+background: var(--button-dark);
+
+color: white;
+}
+
+button {
+
+border: 2px solid var(--button-dark);
+
+background: var(--button);
+
+color: white;
+
+padding: 10px 16px;
+
+border-radius: 10px;
+
+transition: 0.2s;
+}
+
+button:hover {
+
+transform: translateY(-2px);
+
+background: var(--accent);
+
+color: var(--text);
 }
 
 
-/* ---------- CAFÉ ---------- */
+/* =========================================================
+CAFÉ
+========================================================= */
 
 .cafe-room {
+
 width: 100%;
 
 min-height: 560px;
@@ -271,18 +560,18 @@ position: relative;
 
 overflow: hidden;
 
-border: 5px solid #9d5936;
+border: 5px solid var(--border-dark);
 
 border-radius: 25px;
 
-background: #efd0a4;
+background: var(--paper-dark);
 
 box-shadow:
-10px 10px 0 #c98552;
+10px 10px 0 var(--shadow);
 }
 
-
 .cafe-background {
+
 width: 100%;
 
 height: 100%;
@@ -294,8 +583,8 @@ object-fit: cover;
 display: block;
 }
 
-
 .cafe-background-placeholder {
+
 min-height: 560px;
 
 display: flex;
@@ -307,19 +596,19 @@ justify-content: center;
 background:
 linear-gradient(
 135deg,
-#f2c998,
-#ffe8c7
+var(--paper-dark),
+var(--paper)
 );
 
 font-family: "Playfair Display", serif;
 
 font-size: 30px;
 
-color: #9b5d3b;
+color: var(--text);
 }
 
-
 .cafe-sign {
+
 position: absolute;
 
 top: 25px;
@@ -330,11 +619,13 @@ transform: translateX(-50%);
 
 z-index: 5;
 
-background: #fff5df;
+background: var(--paper);
+
+color: var(--text);
 
 padding: 12px 25px;
 
-border: 3px solid #a7603b;
+border: 3px solid var(--border-dark);
 
 border-radius: 8px;
 
@@ -343,13 +634,16 @@ font-family: "Playfair Display", serif;
 font-size: 20px;
 
 box-shadow:
-4px 4px 0 rgba(100, 50, 25, 0.2);
+4px 4px 0 var(--shadow);
 }
 
 
-/* ---------- ACCESSORIES ---------- */
+/* =========================================================
+CAFÉ ACCESSORIES
+========================================================= */
 
 #accessoryDisplay {
+
 position: absolute;
 
 inset: 0;
@@ -359,8 +653,8 @@ pointer-events: none;
 z-index: 4;
 }
 
-
 .cafe-accessory {
+
 position: absolute;
 
 width: 120px;
@@ -369,109 +663,113 @@ height: 120px;
 
 object-fit: contain;
 
-animation: accessoryAppear 0.5s ease;
+animation:
+accessoryAppear 0.5s ease;
 }
 
-
 .cafe-accessory:nth-child(1) {
+
 left: 8%;
 
 bottom: 12%;
 }
 
-
 .cafe-accessory:nth-child(2) {
+
 right: 8%;
 
 bottom: 18%;
 }
 
-
 .cafe-accessory:nth-child(3) {
+
 left: 35%;
 
 top: 25%;
 }
 
-
 .cafe-accessory:nth-child(4) {
+
 right: 30%;
 
 bottom: 10%;
 }
 
-
 .cafe-accessory:nth-child(5) {
+
 left: 55%;
 
 top: 42%;
 }
 
-
 .cafe-accessory:nth-child(6) {
+
 right: 5%;
 
 top: 20%;
 }
 
-
 @keyframes accessoryAppear {
 
 from {
 opacity: 0;
-
 transform: scale(0.5);
 }
 
 to {
 opacity: 1;
-
 transform: scale(1);
 }
-
 }
 
 
-/* ---------- MINI GAME ---------- */
+/* =========================================================
+MINI GAME
+========================================================= */
 
 .mini-game {
+
 margin-top: 35px;
 
 padding: 30px;
 
-background: #fff5e4;
+background: var(--paper);
 
-border: 3px dashed #cc8050;
+color: var(--text);
+
+border: 3px dashed var(--border);
 
 border-radius: 20px;
 
 text-align: center;
 }
 
-
 .customer {
+
 margin: 20px auto;
 
 max-width: 550px;
 
 padding: 20px;
 
-background: #fffaf1;
+background: var(--paper-light);
 
-border: 2px solid #d9a06d;
+color: var(--text);
+
+border: 2px solid var(--border);
 
 border-radius: 15px;
 }
 
-
 .customer-face {
+
 font-size: 55px;
 
 margin-bottom: 10px;
 }
 
-
 #menuButtons {
+
 display: grid;
 
 grid-template-columns:
@@ -482,62 +780,71 @@ gap: 12px;
 margin-top: 20px;
 }
 
-
 .menu-item {
+
 padding: 16px;
 
-background: #f9d5a9;
+background: var(--accent);
 
-border: 2px solid #b96942;
+border: 2px solid var(--border-dark);
 
 border-radius: 12px;
 
-color: #633823;
+color: var(--text);
 
 transition: 0.2s;
 }
 
-
 .menu-item:hover {
-background: #edb87e;
+
+background: var(--button);
+
+color: white;
 
 transform: translateY(-3px);
 }
 
 
-/* ---------- SCRAPBOOK ---------- */
+/* =========================================================
+SCRAPBOOK
+========================================================= */
 
 .scrapbook {
+
 max-width: 850px;
 
 margin: auto;
 
 padding: 30px;
 
-background: #fff8eb;
+background: var(--paper-light);
 
-border: 3px solid #c98250;
+color: var(--text);
+
+border: 3px solid var(--border);
 
 border-radius: 10px;
 
 box-shadow:
-8px 8px 0 #d6a071;
+8px 8px 0 var(--shadow);
 }
 
-
 .scrapbook h1 {
+
 text-align: center;
 
 margin-bottom: 25px;
+
+color: var(--text);
 }
 
-
 .form-group {
+
 margin-bottom: 18px;
 }
 
-
 .form-group label {
+
 display: block;
 
 margin-bottom: 7px;
@@ -545,34 +852,42 @@ margin-bottom: 7px;
 font-weight: bold;
 }
 
-
 input,
 textarea,
 select {
+
 width: 100%;
 
 padding: 12px;
 
-border: 2px solid #d49a69;
+border: 2px solid var(--border);
 
 border-radius: 10px;
 
-background: #fffdf6;
+background: var(--paper);
 
-color: #5a321f;
+color: var(--text);
 
 font-family: inherit;
 }
 
+input::placeholder,
+textarea::placeholder {
+
+color: var(--text);
+
+opacity: 0.6;
+}
 
 textarea {
+
 min-height: 140px;
 
 resize: vertical;
 }
 
-
 .memory-grid {
+
 margin-top: 35px;
 
 display: grid;
@@ -583,33 +898,38 @@ repeat(auto-fit, minmax(250px, 1fr));
 gap: 20px;
 }
 
-
 .memory-card {
-background: #fff1d5;
+
+background: var(--paper);
+
+color: var(--text);
 
 padding: 20px;
 
-border: 2px solid #d49a69;
+border: 2px solid var(--border);
 
 border-radius: 8px;
 
 position: relative;
 
-transform: rotate(
+transform:
+rotate(
 calc(var(--rotation) * 1deg)
 );
 
 box-shadow:
-5px 5px 0 #d8a170;
+5px 5px 0 var(--shadow);
 }
-
 
 .memory-card h3 {
+
 margin-bottom: 10px;
+
+color: var(--text);
 }
 
-
 .memory-card img {
+
 width: 100%;
 
 max-height: 180px;
@@ -621,17 +941,20 @@ border-radius: 5px;
 margin: 10px 0;
 }
 
-
 .memory-date {
+
 font-size: 11px;
 
 opacity: 0.7;
 }
 
 
-/* ---------- SHOP ---------- */
+/* =========================================================
+SHOP
+========================================================= */
 
 .shop-grid {
+
 display: grid;
 
 grid-template-columns:
@@ -640,11 +963,13 @@ repeat(auto-fit, minmax(220px, 1fr));
 gap: 20px;
 }
 
-
 .shop-card {
-background: #fff7e8;
 
-border: 2px solid #d08a57;
+background: var(--paper);
+
+color: var(--text);
+
+border: 2px solid var(--border);
 
 border-radius: 18px;
 
@@ -653,11 +978,17 @@ padding: 20px;
 text-align: center;
 
 box-shadow:
-5px 5px 0 #d6a071;
+5px 5px 0 var(--shadow);
 }
 
+.shop-card h2,
+.shop-card h3 {
+
+color: var(--text);
+}
 
 .shop-image {
+
 height: 140px;
 
 margin-bottom: 15px;
@@ -668,15 +999,15 @@ justify-content: center;
 
 align-items: center;
 
-background: #f4d4aa;
+background: var(--paper-dark);
 
 border-radius: 12px;
 
 overflow: hidden;
 }
 
-
 .shop-image img {
+
 width: 100%;
 
 height: 100%;
@@ -684,26 +1015,29 @@ height: 100%;
 object-fit: cover;
 }
 
-
 .locked {
+
 opacity: 0.55;
 
 filter: grayscale(0.8);
 }
 
-
 .price {
+
 margin: 10px 0;
 
 font-weight: bold;
 
-color: #a75d35;
+color: var(--text);
 }
 
 
-/* ---------- MILESTONES ---------- */
+/* =========================================================
+MILESTONES
+========================================================= */
 
 .milestone-list {
+
 max-width: 700px;
 
 margin: 30px auto;
@@ -713,13 +1047,15 @@ display: grid;
 gap: 12px;
 }
 
-
 .milestone {
+
 padding: 18px;
 
-background: #fff7e7;
+background: var(--paper);
 
-border: 2px solid #d29460;
+color: var(--text);
+
+border: 2px solid var(--border);
 
 border-radius: 13px;
 
@@ -730,22 +1066,25 @@ justify-content: space-between;
 gap: 15px;
 }
 
-
 .milestone.unlocked {
-background: #ffe0ae;
 
-border-color: #b9693e;
+background: var(--accent);
+
+border-color: var(--border-dark);
 }
 
-
 .milestone strong {
+
 display: block;
 }
 
 
-/* ---------- POPUPS ---------- */
+/* =========================================================
+MEMORY POPUP
+========================================================= */
 
 .memory-popup {
+
 position: fixed;
 
 inset: 0;
@@ -760,66 +1099,61 @@ align-items: center;
 
 padding: 20px;
 
-background: rgba(65, 35, 20, 0.65);
+background:
+rgba(40, 30, 30, 0.65);
 
-animation: fadeIn 0.3s;
+animation:
+fadeIn 0.3s;
 }
 
-
 .memory-popup-inner {
+
 max-width: 600px;
 
 width: 100%;
 
 padding: 40px;
 
-background: #fff5df;
+background: var(--paper);
 
-border: 4px solid #a9603b;
+color: var(--text);
+
+border: 4px solid var(--border-dark);
 
 border-radius: 20px;
 
 text-align: center;
 
 box-shadow:
-10px 10px 0 #6e3d29;
+10px 10px 0 var(--shadow);
 }
-
 
 .memory-popup-inner h1,
 .memory-popup-inner h2 {
+
 margin-bottom: 15px;
+
+color: var(--text);
 }
 
-
 .memory-popup-inner p {
+
 line-height: 1.8;
 
 margin-bottom: 15px;
 }
 
-
 .popup-icon {
+
 font-size: 45px;
 
 margin-bottom: 10px;
 }
 
-
 .memory-popup-inner button {
+
 margin-top: 15px;
-
-padding: 12px 22px;
-
-border: 2px solid #8f4d30;
-
-border-radius: 10px;
-
-background: #d7834f;
-
-color: white;
 }
-
 
 @keyframes fadeIn {
 
@@ -830,28 +1164,146 @@ opacity: 0;
 to {
 opacity: 1;
 }
-
 }
 
 
-/* ---------- PARTICLES ---------- */
+/* =========================================================
+LET GO BUTTON
+========================================================= */
 
-.memory-particle {
+.let-go-btn {
+
+margin-top: 15px;
+
+padding: 9px 16px;
+
+border:
+2px solid var(--button-dark);
+
+border-radius: 10px;
+
+background:
+var(--button);
+
+color: white;
+
+font-family: inherit;
+
+cursor: pointer;
+
+transition: 0.2s ease;
+}
+
+.let-go-btn:hover {
+
+background:
+var(--accent);
+
+color:
+var(--text);
+
+transform:
+translateY(-2px);
+}
+
+
+/* =========================================================
+LET GO MEMORY ANIMATION
+========================================================= */
+
+.memory-card.let-go {
+
+animation:
+memoryLetGo 1.8s ease-in forwards;
+
+pointer-events: none;
+}
+
+@keyframes memoryLetGo {
+
+0% {
+
+opacity: 1;
+
+transform:
+translateY(0)
+rotate(0deg)
+scale(1);
+
+filter:
+brightness(1);
+}
+
+35% {
+
+opacity: 1;
+
+transform:
+translateY(-20px)
+rotate(-2deg)
+scale(1.03);
+
+filter:
+brightness(1.15);
+}
+
+65% {
+
+opacity: 0.8;
+
+transform:
+translateY(-55px)
+rotate(3deg)
+scale(0.98);
+
+filter:
+brightness(1.3);
+}
+
+100% {
+
+opacity: 0;
+
+transform:
+translateY(-120px)
+rotate(8deg)
+scale(0.7);
+
+filter:
+brightness(1.8);
+}
+}
+
+
+/* =========================================================
+RELEASE PARTICLES
+========================================================= */
+
+.release-particle {
+
 position: fixed;
 
-z-index: 1000;
+width: 7px;
 
-font-size: 25px;
+height: 7px;
+
+border-radius: 50%;
+
+background:
+var(--accent);
 
 pointer-events: none;
 
-animation: particleFloat 1.5s forwards;
+z-index: 1000;
+
+animation:
+releaseParticle 1.4s ease-out forwards;
 }
 
-
-@keyframes particleFloat {
+@keyframes releaseParticle {
 
 0% {
+
 opacity: 1;
 
 transform:
@@ -860,272 +1312,9 @@ scale(1);
 }
 
 100% {
+
 opacity: 0;
 
-transform:
-translate(
-calc((var(--random-x, 0.5) - 0.5) * 300px),
--200px
-)
-scale(0);
-}
-
-}
-
-
-/* =========================================================
-THEMES
-========================================================= */
-
-
-/* ---------- COZY ---------- */
-
-.theme-cozy {
-background-color: #f8e8cc;
-color: #5a321f;
-}
-
-
-/* ---------- RAINY ---------- */
-
-.theme-rainy {
-background-color: #d7d9d7;
-
-color: #3d4646;
-}
-
-
-.theme-rainy .cafe-background-placeholder {
-background:
-linear-gradient(
-135deg,
-#8d9b9c,
-#dce0dd
-);
-}
-
-
-/* ---------- GARDEN ---------- */
-
-.theme-garden {
-background-color: #dce8c8;
-
-color: #405538;
-}
-
-
-.theme-garden .cafe-background-placeholder {
-background:
-linear-gradient(
-135deg,
-#aec48c,
-#e8efd2
-);
-}
-
-
-/* ---------- VINTAGE ---------- */
-
-.theme-vintage {
-background-color: #e1c6a2;
-
-color: #593d29;
-}
-
-
-.theme-vintage .cafe-background-placeholder {
-background:
-linear-gradient(
-135deg,
-#b99369,
-#ecd8b9
-);
-}
-
-
-/* ---------- MIDNIGHT ---------- */
-
-.theme-midnight {
-background-color: #29263b;
-
-color: #f7e8ce;
-}
-
-
-.theme-midnight .topbar,
-.theme-midnight .paper,
-.theme-midnight .mini-game,
-.theme-midnight .shop-card,
-.theme-midnight .scrapbook {
-background: #3b374f;
-
-color: #f7e8ce;
-}
-
-
-.theme-midnight .cafe-background-placeholder {
-background:
-linear-gradient(
-135deg,
-#29263b,
-#68627f
-);
-}
-
-
-/* ---------- AFTERLIFE ---------- */
-
-.theme-afterlife {
-background-color: #24202c;
-
-color: #eee2d0;
-
-background-image:
-radial-gradient(
-#8e8194 1px,
-transparent 1px
-);
-}
-
-
-.theme-afterlife .topbar,
-.theme-afterlife .paper,
-.theme-afterlife .mini-game,
-.theme-afterlife .shop-card,
-.theme-afterlife .scrapbook {
-background: #37313e;
-
-color: #eee2d0;
-
-border-color: #918095;
-}
-
-
-.theme-afterlife .cafe-background-placeholder {
-background:
-linear-gradient(
-135deg,
-#25202f,
-#77677e
-);
-}
-
-
-/* ---------- RESPONSIVE ---------- */
-
-@media (max-width: 650px) {
-
-.topbar {
-flex-direction: column;
-
-gap: 10px;
-}
-
-.hero {
-margin-top: 30px;
-
-padding: 35px 20px;
-}
-
-.cafe-room,
-.cafe-background-placeholder,
-.cafe-background {
-min-height: 420px;
-}
-
-.cafe-sign {
-font-size: 15px;
-
-width: 80%;
-
-text-align: center;
-}
-
-.memory-popup-inner {
-padding: 25px;
-}
-
-}
-/* =====================================================
-SCRAPBOOK — LET GO MEMORY EFFECT
-===================================================== */
-
-.let-go-btn {
-margin-top: 15px;
-padding: 9px 16px;
-border: 2px solid #a85f3a;
-border-radius: 10px;
-background: #f2c18f;
-color: #633923;
-font-family: inherit;
-cursor: pointer;
-transition: 0.2s ease;
-}
-
-.let-go-btn:hover {
-background: #e5a66d;
-transform: translateY(-2px);
-}
-
-
-/* Memory floating away */
-
-.memory-card.let-go {
-animation: memoryLetGo 1.8s ease-in forwards;
-pointer-events: none;
-}
-
-@keyframes memoryLetGo {
-
-0% {
-opacity: 1;
-transform: translateY(0) rotate(0deg) scale(1);
-filter: brightness(1);
-}
-
-35% {
-opacity: 1;
-transform: translateY(-20px) rotate(-2deg) scale(1.03);
-filter: brightness(1.15);
-}
-
-65% {
-opacity: 0.8;
-transform: translateY(-55px) rotate(3deg) scale(0.98);
-filter: brightness(1.3);
-}
-
-100% {
-opacity: 0;
-transform: translateY(-120px) rotate(8deg) scale(0.7);
-filter: brightness(1.8);
-}
-}
-
-
-/* Particles */
-
-.release-particle {
-position: fixed;
-width: 7px;
-height: 7px;
-border-radius: 50%;
-background: #e7a15d;
-pointer-events: none;
-z-index: 1000;
-
-animation: releaseParticle 1.4s ease-out forwards;
-}
-
-@keyframes releaseParticle {
-
-0% {
-opacity: 1;
-transform: translate(0, 0) scale(1);
-}
-
-100% {
-opacity: 0;
 transform:
 translate(
 var(--particle-x),
@@ -1136,120 +1325,64 @@ scale(0);
 }
 
 
-/* Floating star */
+/* =========================================================
+RELEASE SYMBOL
+========================================================= */
 
 .release-symbol {
+
 position: fixed;
+
 pointer-events: none;
+
 z-index: 1001;
 
 font-size: 24px;
-color: #d9824f;
 
-animation: releaseSymbol 1.5s ease-out forwards;
+color:
+var(--border);
+
+animation:
+releaseSymbol 1.5s ease-out forwards;
 }
 
 @keyframes releaseSymbol {
 
 0% {
+
 opacity: 0;
-transform: translateY(0) scale(0.5);
+
+transform:
+translateY(0)
+scale(0.5);
 }
 
 30% {
+
 opacity: 1;
-transform: translateY(-20px) scale(1);
+
+transform:
+translateY(-20px)
+scale(1);
 }
 
 100% {
+
 opacity: 0;
-transform: translateY(-130px) scale(0.3);
+
+transform:
+translateY(-130px)
+scale(0.3);
 }
 }
 
 
-/* =====================================================
-MEMORY RELEASE POPUP
-===================================================== */
-
-.memory-popup {
-position: fixed;
-inset: 0;
-
-display: flex;
-justify-content: center;
-align-items: center;
-
-background: rgba(72, 42, 27, 0.45);
-
-z-index: 2000;
-
-padding: 20px;
-}
-
-.memory-popup-inner {
-max-width: 430px;
-width: 100%;
-
-padding: 30px;
-
-text-align: center;
-
-background: #fff1d6;
-
-border: 3px solid #b96f45;
-
-border-radius: 18px;
-
-box-shadow:
-0 12px 30px rgba(80, 45, 25, 0.25);
-
-animation: popupAppear 0.4s ease;
-}
-
-@keyframes popupAppear {
-
-from {
-opacity: 0;
-transform: scale(0.85) translateY(20px);
-}
-
-to {
-opacity: 1;
-transform: scale(1) translateY(0);
-}
-}
-
-.popup-icon {
-font-size: 32px;
-margin-bottom: 10px;
-}
-
-.memory-popup-inner button {
-margin-top: 18px;
-
-padding: 10px 22px;
-
-border: 2px solid #a85f3a;
-border-radius: 10px;
-
-background: #e5a66d;
-color: #633923;
-
-font-family: inherit;
-cursor: pointer;
-}
-
-.memory-popup-inner button:hover {
-transform: translateY(-2px);
-}
-
-
-/* =====================================================
+/* =========================================================
 MEMORY CREATION PARTICLES
-===================================================== */
+========================================================= */
 
 .memory-particle {
+
 position: fixed;
 
 font-size: 18px;
@@ -1258,231 +1391,189 @@ pointer-events: none;
 
 z-index: 1500;
 
-animation: memoryParticle 1.5s ease-out forwards;
+color:
+var(--accent);
+
+animation:
+memoryParticle 1.5s ease-out forwards;
 }
 
 @keyframes memoryParticle {
 
 0% {
+
 opacity: 1;
-transform: translateY(0) scale(1);
+
+transform:
+translateY(0)
+scale(1);
 }
 
 100% {
+
 opacity: 0;
-transform: translateY(-100px) scale(0.2);
+
+transform:
+translateY(-100px)
+scale(0.2);
 }
 }
+
+
 /* =========================================================
-SOUL SCRAPBOOK - COMPLETE THEME SYSTEM
+THEME-SPECIFIC CAFÉ ATMOSPHERE
 ========================================================= */
 
-body.theme-cozy {
---theme-bg: #f4d7ad;
---theme-paper: #fff1d6;
---theme-paper-dark: #e8bd88;
---theme-primary: #a85f3a;
---theme-secondary: #d9905b;
---theme-text: #633923;
---theme-accent: #e8b66d;
---theme-dot: #c98259;
-}
 
-body.theme-rainy {
---theme-bg: #9bb5c5;
---theme-paper: #dce8ed;
---theme-paper-dark: #a9c3cf;
---theme-primary: #52778c;
---theme-secondary: #7295a7;
---theme-text: #304957;
---theme-accent: #b8d1dc;
---theme-dot: #6f94a7;
-}
+/* RAIN */
 
-body.theme-garden {
---theme-bg: #b8cfae;
---theme-paper: #edf2df;
---theme-paper-dark: #c6d8b8;
---theme-primary: #66815a;
---theme-secondary: #8eaa76;
---theme-text: #405438;
---theme-accent: #d5c98d;
---theme-dot: #79986b;
-}
+body.theme-rainy .cafe-room {
 
-body.theme-vintage {
---theme-bg: #c9a77d;
---theme-paper: #f0dfc1;
---theme-paper-dark: #d3b58c;
---theme-primary: #79533d;
---theme-secondary: #a47755;
---theme-text: #4c3428;
---theme-accent: #c49a62;
---theme-dot: #956c4e;
-}
-
-body.theme-midnight {
---theme-bg: #25283d;
---theme-paper: #343851;
---theme-paper-dark: #454a65;
---theme-primary: #b5a6d2;
---theme-secondary: #756d9b;
---theme-text: #eee9f5;
---theme-accent: #c7b9df;
---theme-dot: #68627f;
-}
-
-body.theme-afterlife {
---theme-bg: #272535;
---theme-paper: #3b3749;
---theme-paper-dark: #514b60;
---theme-primary: #c7a6d9;
---theme-secondary: #9d7caf;
---theme-text: #f0e8f5;
---theme-accent: #d8c1e5;
---theme-dot: #80678f;
+background:
+linear-gradient(
+135deg,
+#8299a5,
+#cbd9de
+);
 }
 
 
-/* ENTIRE PAGE */
+/* GARDEN */
 
-body {
-background-color: var(--theme-bg) !important;
-color: var(--theme-text) !important;
+body.theme-garden .cafe-room {
 
-background-image:
-radial-gradient(
-var(--theme-dot) 1px,
-transparent 1px
-) !important;
-
-background-size: 14px 14px !important;
-
-transition:
-background-color 0.6s ease,
-color 0.6s ease;
+background:
+linear-gradient(
+135deg,
+#91ad78,
+#e0ead0
+);
 }
 
 
-/* HEADER */
+/* VINTAGE */
 
-header,
-.topbar {
-background-color: var(--theme-paper) !important;
-border-color: var(--theme-primary) !important;
-color: var(--theme-text) !important;
+body.theme-vintage .cafe-room {
+
+background:
+linear-gradient(
+135deg,
+#a9845f,
+#ead5b6
+);
 }
 
 
-/* NAVIGATION */
+/* MIDNIGHT */
 
-nav,
-.main-nav {
-background-color: var(--theme-bg) !important;
-}
+body.theme-midnight .cafe-room {
 
-.main-nav a {
-background-color: var(--theme-paper) !important;
-color: var(--theme-text) !important;
-border-color: var(--theme-primary) !important;
-}
-
-.main-nav a:hover {
-background-color: var(--theme-accent) !important;
+background:
+linear-gradient(
+135deg,
+#22253a,
+#575273
+);
 }
 
 
-/* SCRAPBOOK / PAPER */
+/* AFTERLIFE */
 
+body.theme-afterlife .cafe-room {
+
+background:
+linear-gradient(
+135deg,
+#201c29,
+#6e5a76
+);
+}
+
+
+/* =========================================================
+GENERAL THEME TRANSITIONS
+========================================================= */
+
+body,
+.topbar,
+.main-nav a,
+.paper,
+.hero,
+.cafe-room,
+.cafe-sign,
+.mini-game,
+.customer,
+.menu-item,
 .scrapbook,
-.paper {
-background-color: var(--theme-paper) !important;
-color: var(--theme-text) !important;
-border-color: var(--theme-primary) !important;
-}
-
-
-/* MEMORY CARDS */
-
-.memory-card {
-background-color: var(--theme-paper) !important;
-color: var(--theme-text) !important;
-border-color: var(--theme-primary) !important;
-
-box-shadow:
-5px 5px 0 var(--theme-paper-dark) !important;
-}
-
-
-/* HEADINGS */
-
-h1,
-h2,
-h3,
-h4 {
-color: var(--theme-primary) !important;
-}
-
-
-/* INPUTS */
-
+.memory-card,
+.shop-card,
+.shop-image,
+.milestone,
+.memory-popup-inner,
 input,
 textarea,
-select {
-background-color: var(--theme-paper) !important;
-color: var(--theme-text) !important;
-border-color: var(--theme-primary) !important;
-}
-
-
-/* BUTTONS */
-
+select,
 button,
 .btn,
-.let-go-btn {
-background-color: var(--theme-secondary) !important;
-color: var(--theme-text) !important;
-border-color: var(--theme-primary) !important;
-}
-
-button:hover,
-.btn:hover,
-.let-go-btn:hover {
-background-color: var(--theme-accent) !important;
-}
-
-
-/* COINS */
-
 .coins {
-background-color: var(--theme-accent) !important;
-color: var(--theme-text) !important;
-border-color: var(--theme-primary) !important;
+
+transition:
+background-color 0.5s ease,
+background 0.5s ease,
+border-color 0.5s ease,
+color 0.5s ease,
+box-shadow 0.5s ease;
 }
 
 
-/* LINKS */
+/* =========================================================
+RESPONSIVE
+========================================================= */
 
-a {
-color: var(--theme-primary);
+@media (max-width: 650px) {
+
+.topbar {
+
+flex-direction: column;
+
+gap: 10px;
 }
 
+.hero {
 
-/* POPUP */
+margin-top: 30px;
+
+padding: 35px 20px;
+}
+
+.cafe-room,
+.cafe-background-placeholder,
+.cafe-background {
+
+min-height: 420px;
+}
+
+.cafe-sign {
+
+font-size: 15px;
+
+width: 80%;
+
+text-align: center;
+}
 
 .memory-popup-inner {
-background-color: var(--theme-paper) !important;
-color: var(--theme-text) !important;
-border-color: var(--theme-primary) !important;
+
+padding: 25px;
 }
 
+.memory-grid {
 
-/* LET GO PARTICLES */
-
-.release-particle {
-background: var(--theme-accent) !important;
+grid-template-columns: 1fr;
 }
 
-.release-symbol {
-color: var(--theme-primary) !important;
+.shop-grid {
+
+grid-template-columns: 1fr;
+}
 }
