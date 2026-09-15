@@ -1,20 +1,321 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Afterlife — Soul Scrapbook Café</title><link rel="stylesheet" href="style.css"></head><body>
-    <nav>
-      <div class="logo">☕ Soul Scrapbook Café</div>
-      <a href="index.html">Home</a><a href="cafe.html">My Café</a>
-      <a href="scrapbook.html">Scrapbook</a><a href="Shop.html">Shop</a>
-      <a href="ghost-cafe.html">Companion</a>
-      <span class="stat">🪙 <span data-coins>0</span></span>
-    </nav>
-<main class="wrap"><section class="hero" style="background:#f0e9f6">
-<h1>👻 The Afterlife Café</h1>
-<p><b>You found the truth.</b></p>
-<p>The scrapbook wasn't simply a place to remember your life. After the accident, you had crossed into the afterlife. The café became a gentle place between memories and eternity, and the “customers” you've been serving were spirits carrying their own stories.</p>
-<p>Your companion knew the truth, but waited until you were ready to remember.</p>
-<div class="notice">✨ This ending theme is permanently unlocked on this device.</div>
-<a class="button" href="cafe.html">Return to the café</a>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>The Truth</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<header class="topbar">
+
+<h1>☾ The Truth</h1>
+
+<div class="coins">
+✦ <span class="coin-count">0</span>
+</div>
+
+</header>
+
+
+<nav class="main-nav">
+
+<a href="index.html">Home</a>
+
+<a href="cafe.html">My Café</a>
+
+<a href="scrapbook.html">Scrapbook</a>
+
+<a href="Shop.html">Shop</a>
+
+<a href="afterlife.html">Truth</a>
+
+</nav>
+
+
+<main class="page-container">
+
+
+<section class="paper center">
+
+<h1>
+The Memories
+</h1>
+
+<br>
+
+<p id="truthText">
+There are still pieces of your memory
+missing.
+</p>
+
 </section>
-<div class="card"><h2>🕯️ The Final Page</h2><p>Instead of forgetting everything, you decide to keep the café open—a place where every visitor can leave one last memory.</p><p>There are no more mysteries to chase. Just stories to collect.</p></div>
-</main><div id="toast" style="position:fixed;right:18px;bottom:18px;background:#6f4e37;color:white;padding:13px 18px;border-radius:15px;opacity:0;transition:.25s;z-index:50"></div>
-<script>const oldToast=toast;toast=function(t){let x=document.getElementById("toast");x.textContent=t;x.style.opacity=1;setTimeout(()=>x.style.opacity=0,1800)};</script><script src="script.js"></script></body></html>
+
+
+<section>
+
+<h2 class="section-title">
+Truth Milestones
+</h2>
+
+
+<div
+class="milestone-list"
+id="milestoneList"
+></div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+const milestones = [
+
+[
+1000,
+"Something about the café feels familiar."
+],
+
+[
+5000,
+"A page appears that you don't remember writing."
+],
+
+[
+10000,
+"One of the companions remembers you."
+],
+
+[
+25000,
+"You remember something about the accident."
+],
+
+[
+50000,
+"The café begins to feel like somewhere you belong."
+],
+
+[
+75000,
+"The accident and the café are connected."
+],
+
+[
+100000,
+"You remember the truth."
+]
+
+];
+
+
+function getGame() {
+
+return JSON.parse(
+localStorage.getItem(
+"soulScrapbookGame"
+)
+) || {
+
+coins: 0,
+
+milestones: [],
+
+afterlifeUnlocked: false
+
+};
+
+}
+
+
+function render() {
+
+const game = getGame();
+
+
+document
+.querySelectorAll(
+".coin-count"
+)
+.forEach(
+el =>
+el.textContent =
+game.coins.toLocaleString()
+);
+
+
+const list =
+document.getElementById(
+"milestoneList"
+);
+
+
+list.innerHTML = "";
+
+
+milestones.forEach(
+([amount, text]) => {
+
+const unlocked =
+game.coins >= amount;
+
+
+list.innerHTML += `
+
+<article class="
+milestone
+${
+unlocked
+?
+"unlocked"
+:
+""
+}
+">
+
+<div>
+
+<strong>
+
+${
+unlocked
+?
+"✦ "
+:
+"🔒 "
+}
+
+${amount.toLocaleString()}
+coins
+
+</strong>
+
+<span>
+${
+unlocked
+?
+text
+:
+"Something is still missing..."
+}
+</span>
+
+</div>
+
+</article>
+
+`;
+
+}
+);
+
+
+if (
+game.afterlifeUnlocked
+) {
+
+document.getElementById(
+"truthText"
+).innerHTML = `
+
+<strong>
+You remember.
+</strong>
+
+<br><br>
+
+The accident was the final moment
+of your old life.
+
+<br><br>
+
+The café wasn't simply a café.
+
+It was a place for souls who had
+memories they weren't ready to let go of.
+
+<br><br>
+
+Your companions were never ordinary
+employees.
+
+<br><br>
+
+They were waiting for you.
+
+<br><br>
+
+<strong>
+The Afterlife Café is now yours.
+</strong>
+
+<br><br>
+
+<a
+href="ghost-cafe.html"
+class="btn"
+>
+Enter the Afterlife Café
+</a>
+
+`;
+
+}
+
+}
+
+
+render();
+
+</script>
+<script>
+
+function applySavedTheme() {
+
+const game =
+JSON.parse(
+localStorage.getItem(
+"soulScrapbookGame"
+)
+) || {};
+
+const theme =
+game.equippedTheme ||
+"cozy";
+
+document.body.classList.remove(
+"theme-cozy",
+"theme-rainy",
+"theme-garden",
+"theme-vintage",
+"theme-midnight",
+"theme-afterlife"
+);
+
+document.body.classList.add(
+"theme-" + theme
+);
+}
+
+applySavedTheme();
+
+</script>
+</body>
+
+</html>
