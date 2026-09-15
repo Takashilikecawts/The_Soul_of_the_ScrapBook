@@ -1,18 +1,765 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Shop — Soul Scrapbook Café</title><link rel="stylesheet" href="style.css"></head><body>
-    <nav>
-      <div class="logo">☕ Soul Scrapbook Café</div>
-      <a href="index.html">Home</a><a href="cafe.html">My Café</a>
-      <a href="scrapbook.html">Scrapbook</a><a href="Shop.html">Shop</a>
-      <a href="ghost-cafe.html">Companion</a>
-      <span class="stat">🪙 <span data-coins>0</span></span>
-    </nav>
-<main class="wrap"><section class="hero"><h1>🛍️ Café Shop</h1><p>Coins earned from memories and serving customers can be spent here.</p><div class="stat">🪙 <span data-coins>0</span></div></section>
-<div class="grid">
-<div class="card"><h2>🌧️ Rainy Café</h2><p>Soft blue-gray windows and a rainy atmosphere.</p><button onclick="buy('rainy',500)">500 coins</button></div>
-<div class="card"><h2>🌿 Garden Café</h2><p>Plants, sunlight, and a peaceful garden feeling.</p><button onclick="buy('garden',750)">750 coins</button></div>
-<div class="card"><h2>📻 Vintage Café</h2><p>Warm wood and nostalgic colors.</p><button onclick="buy('vintage',1000)">1,000 coins</button></div>
-<div class="card"><h2>🌙 Midnight Café</h2><p>Deep evening colors and candlelit vibes.</p><button onclick="buy('midnight',1500)">1,500 coins</button></div>
-<div class="card secret"><h2>👻 Afterlife Café</h2><p><b>SECRET — 100,000 coins</b></p><p>The final truth: the crash wasn't the beginning of your new life. You crossed into the afterlife, and the café has been serving ghosts all along. Unlock this as a <b>permanent</b> theme.</p><button class="gold" onclick="buy('afterlife',100000)">🗝️ Unlock 100,000</button></div>
-</div></main><div id="toast" style="position:fixed;right:18px;bottom:18px;background:#6f4e37;color:white;padding:13px 18px;border-radius:15px;opacity:0;transition:.25s;z-index:50"></div>
-<script>const oldToast=toast;toast=function(t){let x=document.getElementById("toast");x.textContent=t;x.style.opacity=1;setTimeout(()=>x.style.opacity=0,1800)};</script><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>Café Shop</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<header class="topbar">
+
+<h1>🛍️ Café Shop</h1>
+
+<div class="coins">
+✦ <span class="coin-count">0</span>
+</div>
+
+</header>
+
+
+<nav class="main-nav">
+
+<a href="index.html">Home</a>
+
+<a href="cafe.html">My Café</a>
+
+<a href="scrapbook.html">Scrapbook</a>
+
+<a href="Shop.html">Shop</a>
+
+<a href="afterlife.html">Truth</a>
+
+</nav>
+
+
+<main class="page-container">
+
+
+<h1 class="section-title">
+Café Themes
+</h1>
+
+
+<div
+class="shop-grid"
+id="themeShop"
+></div>
+
+
+<h1 class="section-title">
+Accessories
+</h1>
+
+
+<div
+class="shop-grid"
+id="accessoryShop"
+></div>
+
+
+<section class="paper center">
+
+<h2>
+Your Progress
+</h2>
+
+<br>
+
+<p>
+Coins:
+<strong class="coin-count">
+0
+</strong>
+</p>
+
+<br>
+
+<p>
+Reach <strong>100,000 coins</strong>
+to discover the secret.
+</p>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+/* ---------- GAME ---------- */
+
+const defaultGame = {
+
+coins: 0,
+
+memories: [],
+
+unlockedThemes: ["cozy"],
+
+ownedAccessories: [],
+
+equippedTheme: "cozy",
+
+equippedAccessories: [],
+
+milestones: [],
+
+afterlifeUnlocked: false
+
+};
+
+
+function getGame() {
+
+const saved =
+localStorage.getItem(
+"soulScrapbookGame"
+);
+
+if (!saved) {
+
+localStorage.setItem(
+"soulScrapbookGame",
+JSON.stringify(defaultGame)
+);
+
+return structuredClone(
+defaultGame
+);
+
+}
+
+return JSON.parse(saved);
+
+}
+
+
+function saveGame(game) {
+
+localStorage.setItem(
+"soulScrapbookGame",
+JSON.stringify(game)
+);
+
+}
+
+
+/* =========================================================
+THEMES
+========================================================= */
+
+const themes = [
+
+{
+id: "cozy",
+name: "Cozy Café",
+price: 0,
+image: "images/cafe.png",
+description:
+"Your original warm café."
+},
+
+{
+id: "rainy",
+name: "Rainy Café",
+price: 1000,
+image: "images/rainy.png",
+description:
+"Warm lights and rain outside."
+},
+
+{
+id: "garden",
+name: "Garden Café",
+price: 3000,
+image: "images/garden.png",
+description:
+"Flowers, plants and sunlight."
+},
+
+{
+id: "vintage",
+name: "Vintage Café",
+price: 7500,
+image: "images/vintage.png",
+description:
+"A café filled with nostalgia."
+},
+
+{
+id: "midnight",
+name: "Midnight Café",
+price: 15000,
+image: "images/midnight.png",
+description:
+"A quiet café beneath the stars."
+},
+
+{
+id: "afterlife",
+name: "Afterlife Café",
+price: 100000,
+image: "images/afterlife.png",
+description:
+"The café beyond life.",
+secret: true
+}
+
+];
+
+
+/* =========================================================
+ACCESSORIES
+========================================================= */
+
+const accessories = [
+
+{
+id: "flowers",
+name: "Flower Vase",
+price: 300,
+image: "images/flowers.png"
+},
+
+{
+id: "bookshelf",
+name: "Tiny Bookshelf",
+price: 700,
+image: "images/bookshelf.png"
+},
+
+{
+id: "teddy",
+name: "Café Teddy",
+price: 1500,
+image: "images/teddy.png"
+},
+
+{
+id: "polaroids",
+name: "Polaroid Wall",
+price: 1000,
+image: "images/polaroids.png"
+},
+
+{
+id: "plant",
+name: "Big Plant",
+price: 2000,
+image: "images/plant.png"
+},
+
+{
+id: "ghostlamp",
+name: "Ghost Lamp",
+price: 5000,
+image: "images/ghostlamp.png"
+}
+
+];
+
+
+/* =========================================================
+THEME SHOP
+========================================================= */
+
+function renderThemes() {
+
+const game = getGame();
+
+const shop =
+document.getElementById(
+"themeShop"
+);
+
+shop.innerHTML = "";
+
+
+themes.forEach(theme => {
+
+const unlocked =
+game.unlockedThemes
+.includes(theme.id);
+
+
+if (
+theme.secret &&
+!game.afterlifeUnlocked
+) {
+
+shop.innerHTML += `
+
+<article class="
+shop-card
+locked
+">
+
+<div class="shop-image">
+
+<span>
+☾
+</span>
+
+</div>
+
+<h2>
+??? Café
+</h2>
+
+<p>
+A locked memory.
+</p>
+
+<div class="price">
+🔒 100,000 coins
+</div>
+
+<button
+class="btn secondary"
+disabled
+>
+Locked
+</button>
+
+</article>
+
+`;
+
+return;
+
+}
+
+
+shop.innerHTML += `
+
+<article class="shop-card">
+
+<div class="shop-image">
+
+<img
+src="${theme.image}"
+alt="${theme.name}"
+onerror="
+this.style.display='none'
+"
+>
+
+</div>
+
+<h2>
+${theme.name}
+</h2>
+
+<p>
+${theme.description}
+</p>
+
+<div class="price">
+
+${
+unlocked
+?
+"✓ Unlocked"
+:
+"✦ " +
+theme.price.toLocaleString()
++
+" coins"
+}
+
+</div>
+
+<button
+class="btn"
+onclick="
+themeAction('${theme.id}')
+"
+>
+
+${
+unlocked
+?
+(
+game.equippedTheme ===
+theme.id
+?
+"Equipped"
+:
+"Equip"
+)
+:
+"Buy"
+}
+
+</button>
+
+</article>
+
+`;
+
+});
+
+}
+
+
+function themeAction(id) {
+
+const game = getGame();
+
+const theme =
+themes.find(
+t => t.id === id
+);
+
+
+if (
+game.unlockedThemes
+.includes(id)
+) {
+
+game.equippedTheme = id;
+
+saveGame(game);
+
+renderThemes();
+
+alert(
+theme.name +
+" equipped!"
+);
+
+return;
+
+}
+
+
+if (
+game.coins <
+theme.price
+) {
+
+alert(
+"You don't have enough coins."
+);
+
+return;
+
+}
+
+
+game.coins -=
+theme.price;
+
+
+game.unlockedThemes.push(
+id
+);
+
+
+game.equippedTheme =
+id;
+
+
+saveGame(game);
+
+renderThemes();
+
+updateUI();
+
+}
+
+
+/* =========================================================
+ACCESSORY SHOP
+========================================================= */
+
+function renderAccessories() {
+
+const game = getGame();
+
+const shop =
+document.getElementById(
+"accessoryShop"
+);
+
+shop.innerHTML = "";
+
+
+accessories.forEach(item => {
+
+const owned =
+game.ownedAccessories
+.includes(item.id);
+
+
+const equipped =
+game.equippedAccessories
+.includes(item.id);
+
+
+shop.innerHTML += `
+
+<article class="shop-card">
+
+<div class="shop-image">
+
+<img
+src="${item.image}"
+alt="${item.name}"
+onerror="
+this.style.display='none'
+"
+>
+
+</div>
+
+<h2>
+${item.name}
+</h2>
+
+<div class="price">
+
+${
+owned
+?
+"✓ Owned"
+:
+"✦ " +
+item.price.toLocaleString()
++
+" coins"
+}
+
+</div>
+
+
+<button
+class="btn"
+onclick="
+accessoryAction('${item.id}')
+"
+>
+
+${
+owned
+?
+(
+equipped
+?
+"Unequip"
+:
+"Equip"
+)
+:
+"Buy"
+}
+
+</button>
+
+</article>
+
+`;
+
+});
+
+}
+
+
+function accessoryAction(id) {
+
+const game = getGame();
+
+const item =
+accessories.find(
+a => a.id === id
+);
+
+
+if (
+game.ownedAccessories
+.includes(id)
+) {
+
+if (
+game.equippedAccessories
+.includes(id)
+) {
+
+game.equippedAccessories =
+game.equippedAccessories
+.filter(
+x => x !== id
+);
+
+} else {
+
+game.equippedAccessories
+.push(id);
+
+}
+
+
+saveGame(game);
+
+renderAccessories();
+
+return;
+
+}
+
+
+if (
+game.coins <
+item.price
+) {
+
+alert(
+"You don't have enough coins."
+);
+
+return;
+
+}
+
+
+game.coins -=
+item.price;
+
+
+game.ownedAccessories
+.push(id);
+
+
+game.equippedAccessories
+.push(id);
+
+
+saveGame(game);
+
+
+renderAccessories();
+
+updateUI();
+
+}
+
+
+/* ---------- UI ---------- */
+
+function updateUI() {
+
+const game = getGame();
+
+document
+.querySelectorAll(
+".coin-count"
+)
+.forEach(el => {
+
+el.textContent =
+game.coins.toLocaleString();
+
+});
+
+}
+
+
+updateUI();
+
+renderThemes();
+
+renderAccessories();
+
+function equipTheme(themeName) {
+
+const game =
+JSON.parse(
+localStorage.getItem(
+"soulScrapbookGame"
+)
+) || {};
+
+game.equippedTheme =
+themeName;
+
+localStorage.setItem(
+"soulScrapbookGame",
+JSON.stringify(game)
+);
+
+applySavedTheme();
+
+}
+</script>
+
+<button onclick="equipTheme('rainy')">
+Equip Rainy
+</button>
+
+<button onclick="equipTheme('garden')">
+Equip Garden
+</button>
+
+<button onclick="equipTheme('vintage')">
+Equip Vintage
+</button>
+
+<button onclick="equipTheme('midnight')">
+Equip Midnight
+</button>
+
+<button onclick="equipTheme('afterlife')">
+Equip Afterlife
+</button>
+
+<script>
+
+function applySavedTheme() {
+
+const game =
+JSON.parse(
+localStorage.getItem(
+"soulScrapbookGame"
+)
+) || {};
+
+const theme =
+game.equippedTheme ||
+"cozy";
+
+document.body.classList.remove(
+"theme-cozy",
+"theme-rainy",
+"theme-garden",
+"theme-vintage",
+"theme-midnight",
+"theme-afterlife"
+);
+
+document.body.classList.add(
+"theme-" + theme
+);
+}
+
+applySavedTheme();
+
+</script>
+
+</body>
+
+</html>
