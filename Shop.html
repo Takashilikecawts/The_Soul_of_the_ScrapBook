@@ -707,27 +707,6 @@ applySavedTheme();
 }
 </script>
 
-<button onclick="equipTheme('rainy')">
-Equip Rainy
-</button>
-
-<button onclick="equipTheme('garden')">
-Equip Garden
-</button>
-
-<button onclick="equipTheme('vintage')">
-Equip Vintage
-</button>
-
-<button onclick="equipTheme('midnight')">
-Equip Midnight
-</button>
-
-<button onclick="equipTheme('afterlife')">
-Equip Afterlife
-</button>
-
-<script>
 
 function applySavedTheme() {
 
@@ -759,7 +738,44 @@ document.body.classList.add(
 applySavedTheme();
 
 </script>
+<script>
+function getGame() {
+  const saved = localStorage.getItem("soulScrapbookGame");
 
+  if (saved) {
+    return JSON.parse(saved);
+  }
+
+  const newGame = {
+    coins: 0,
+    equippedTheme: "cozy",
+    ownedThemes: ["cozy"],
+    ownedAccessories: [],
+    equippedAccessories: []
+  };
+
+  localStorage.setItem("soulScrapbookGame", JSON.stringify(newGame));
+  return newGame;
+}
+
+function applySavedTheme() {
+  const game = getGame();
+
+  document.body.classList.remove(
+    "theme-cozy",
+    "theme-rainy",
+    "theme-garden",
+    "theme-vintage",
+    "theme-midnight",
+    "theme-afterlife"
+  );
+
+  const theme = game.equippedTheme || "cozy";
+  document.body.classList.add("theme-" + theme);
+}
+
+applySavedTheme();
+</script>
 </body>
 
 </html>

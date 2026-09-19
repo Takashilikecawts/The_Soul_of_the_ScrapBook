@@ -1,27 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700&display=swap');
 
-
 /* =========================================================
+
 SOUL OF THE SCRAPBOOK
+
 COMPLETE STYLE SHEET
+
 ========================================================= */
 
-
 /* =========================================================
+
 BASIC
+
 ========================================================= */
 
 * {
+
 box-sizing: border-box;
+
 margin: 0;
+
 padding: 0;
+
 }
 
 html {
+
 min-height: 100%;
+
 }
 
 body {
+
 min-height: 100vh;
 
 font-family: "DM Mono", monospace;
@@ -31,41 +41,61 @@ color: var(--text);
 background-color: var(--bg);
 
 background-image:
+
 radial-gradient(
+
 var(--dot) 1px,
+
 transparent 1px
+
 );
 
 background-size: 18px 18px;
 
 transition:
+
 background-color 0.5s ease,
+
 color 0.5s ease;
+
 }
 
 h1,
+
 h2,
+
 h3,
+
 h4 {
+
 font-family: "Playfair Display", serif;
+
 }
 
 a {
+
 color: inherit;
+
 text-decoration: none;
+
 }
 
 button {
+
 font-family: inherit;
+
 cursor: pointer;
+
 }
 
-
 /* =========================================================
+
 DEFAULT THEME
+
 ========================================================= */
 
 body,
+
 body.theme-cozy {
 
 --bg: #f8e8cc;
@@ -91,11 +121,13 @@ body.theme-cozy {
 --shadow: #d9a06f;
 
 --dot: #d99b65;
+
 }
 
-
 /* =========================================================
+
 RAINY THEME
+
 ========================================================= */
 
 body.theme-rainy {
@@ -123,11 +155,13 @@ body.theme-rainy {
 --shadow: #819da9;
 
 --dot: #6f8f9d;
+
 }
 
-
 /* =========================================================
+
 GARDEN THEME
+
 ========================================================= */
 
 body.theme-garden {
@@ -155,11 +189,13 @@ body.theme-garden {
 --shadow: #92ad7d;
 
 --dot: #79966a;
+
 }
 
-
 /* =========================================================
+
 VINTAGE THEME
+
 ========================================================= */
 
 body.theme-vintage {
@@ -187,11 +223,13 @@ body.theme-vintage {
 --shadow: #ae875e;
 
 --dot: #98704e;
+
 }
 
-
 /* =========================================================
+
 MIDNIGHT THEME
+
 ========================================================= */
 
 body.theme-midnight {
@@ -219,11 +257,13 @@ body.theme-midnight {
 --shadow: #171a2b;
 
 --dot: #625d7d;
+
 }
 
-
 /* =========================================================
+
 AFTERLIFE THEME
+
 ========================================================= */
 
 body.theme-afterlife {
@@ -251,11 +291,13 @@ body.theme-afterlife {
 --shadow: #15131d;
 
 --dot: #776080;
+
 }
 
-
 /* =========================================================
+
 HEADER
+
 ========================================================= */
 
 .topbar {
@@ -281,22 +323,29 @@ top: 0;
 z-index: 50;
 
 box-shadow:
+
 0 4px 0 var(--shadow);
 
 transition:
+
 background 0.5s,
+
 border-color 0.5s;
+
 }
 
 .topbar h1 {
+
 font-size: 25px;
 
 color: var(--text);
+
 }
 
-
 /* =========================================================
+
 COINS
+
 ========================================================= */
 
 .coins {
@@ -314,17 +363,23 @@ border-radius: 30px;
 font-weight: bold;
 
 box-shadow:
+
 3px 3px 0 var(--shadow);
 
 transition:
+
 background 0.5s,
+
 color 0.5s,
+
 border-color 0.5s;
+
 }
 
-
 /* =========================================================
+
 NAVIGATION
+
 ========================================================= */
 
 .main-nav {
@@ -340,6 +395,7 @@ gap: 10px;
 padding: 18px;
 
 background: transparent;
+
 }
 
 .main-nav a {
@@ -355,6 +411,7 @@ border: 2px solid var(--border);
 border-radius: 12px;
 
 transition: 0.2s;
+
 }
 
 .main-nav a:hover {
@@ -362,11 +419,13 @@ transition: 0.2s;
 transform: translateY(-3px);
 
 background: var(--accent);
+
 }
 
-
 /* =========================================================
+
 CONTAINERS
+
 ========================================================= */
 
 .page-container {
@@ -374,10 +433,13 @@ CONTAINERS
 width: min(1100px, 92%);
 
 margin: 35px auto 70px;
+
 }
 
 .center {
+
 text-align: center;
+
 }
 
 .section-title {
@@ -389,11 +451,13 @@ margin-bottom: 25px;
 font-size: 34px;
 
 color: var(--text);
+
 }
 
-
 /* =========================================================
+
 PAPER
+
 ========================================================= */
 
 .paper {
@@ -409,12 +473,15 @@ border-radius: 18px;
 padding: 25px;
 
 box-shadow:
+
 7px 7px 0 var(--shadow);
+
 }
 
-
 /* =========================================================
+
 HERO
+
 ========================================================= */
 
 .hero {
@@ -436,7 +503,9 @@ border: 3px dashed var(--border);
 border-radius: 25px;
 
 box-shadow:
+
 10px 10px 0 var(--shadow);
+
 }
 
 .hero h1 {
@@ -446,6 +515,7 @@ font-size: clamp(42px, 7vw, 75px);
 margin-bottom: 15px;
 
 color: var(--text);
+
 }
 
 .hero p {
@@ -455,6 +525,7 @@ line-height: 1.8;
 max-width: 650px;
 
 margin: auto;
+
 }
 
 .hero-buttons {
@@ -468,11 +539,13 @@ flex-wrap: wrap;
 gap: 12px;
 
 margin-top: 28px;
+
 }
 
-
 /* =========================================================
+
 BUTTONS
+
 ========================================================= */
 
 .btn {
@@ -490,7 +563,9 @@ border-radius: 12px;
 transition: 0.2s;
 
 box-shadow:
+
 3px 3px 0 var(--button-dark);
+
 }
 
 .btn:hover {
@@ -502,7 +577,9 @@ background: var(--accent);
 color: var(--text);
 
 box-shadow:
+
 5px 5px 0 var(--button-dark);
+
 }
 
 .btn.secondary {
@@ -512,6 +589,7 @@ background: var(--paper-light);
 color: var(--text);
 
 border-color: var(--border);
+
 }
 
 .btn.dark {
@@ -519,6 +597,7 @@ border-color: var(--border);
 background: var(--button-dark);
 
 color: white;
+
 }
 
 button {
@@ -534,6 +613,7 @@ padding: 10px 16px;
 border-radius: 10px;
 
 transition: 0.2s;
+
 }
 
 button:hover {
@@ -543,11 +623,13 @@ transform: translateY(-2px);
 background: var(--accent);
 
 color: var(--text);
+
 }
 
-
 /* =========================================================
+
 CAFÉ
+
 ========================================================= */
 
 .cafe-room {
@@ -567,10 +649,18 @@ border-radius: 25px;
 background: var(--paper-dark);
 
 box-shadow:
+
 10px 10px 0 var(--shadow);
+
 }
 
+/* MAIN CAFÉ BACKGROUND IMAGE */
+
 .cafe-background {
+
+position: absolute;
+
+inset: 0;
 
 width: 100%;
 
@@ -581,7 +671,104 @@ min-height: 560px;
 object-fit: cover;
 
 display: block;
+
+z-index: 1;
+
 }
+
+/* =========================================================
+
+CAFÉ THEME TINTS
+
+========================================================= */
+
+.cafe-room::after {
+
+content: "";
+
+position: absolute;
+
+inset: 0;
+
+pointer-events: none;
+
+z-index: 2;
+
+transition:
+
+background 0.5s ease;
+
+background:
+
+rgba(255, 205, 150, 0.08);
+
+}
+
+/* COZY */
+
+body.theme-cozy .cafe-room::after {
+
+background:
+
+rgba(255, 205, 150, 0.08);
+
+}
+
+/* RAINY - BLUE */
+
+body.theme-rainy .cafe-room::after {
+
+background:
+
+rgba(65, 125, 175, 0.32);
+
+}
+
+/* GARDEN - GREEN */
+
+body.theme-garden .cafe-room::after {
+
+background:
+
+rgba(100, 165, 80, 0.25);
+
+}
+
+/* VINTAGE - WARM BROWN */
+
+body.theme-vintage .cafe-room::after {
+
+background:
+
+rgba(170, 110, 55, 0.27);
+
+}
+
+/* MIDNIGHT - PURPLE */
+
+body.theme-midnight .cafe-room::after {
+
+background:
+
+rgba(100, 70, 175, 0.38);
+
+}
+
+/* AFTERLIFE - DARK PURPLE */
+
+body.theme-afterlife .cafe-room::after {
+
+background:
+
+rgba(120, 70, 150, 0.35);
+
+}
+
+/* =========================================================
+
+CAFÉ PLACEHOLDER
+
+========================================================= */
 
 .cafe-background-placeholder {
 
@@ -594,10 +781,15 @@ align-items: center;
 justify-content: center;
 
 background:
+
 linear-gradient(
+
 135deg,
+
 var(--paper-dark),
+
 var(--paper)
+
 );
 
 font-family: "Playfair Display", serif;
@@ -605,7 +797,18 @@ font-family: "Playfair Display", serif;
 font-size: 30px;
 
 color: var(--text);
+
+position: relative;
+
+z-index: 1;
+
 }
+
+/* =========================================================
+
+CAFÉ SIGN
+
+========================================================= */
 
 .cafe-sign {
 
@@ -617,7 +820,7 @@ left: 50%;
 
 transform: translateX(-50%);
 
-z-index: 5;
+z-index: 10;
 
 background: var(--paper);
 
@@ -634,12 +837,15 @@ font-family: "Playfair Display", serif;
 font-size: 20px;
 
 box-shadow:
+
 4px 4px 0 var(--shadow);
+
 }
 
-
 /* =========================================================
+
 CAFÉ ACCESSORIES
+
 ========================================================= */
 
 #accessoryDisplay {
@@ -650,7 +856,8 @@ inset: 0;
 
 pointer-events: none;
 
-z-index: 4;
+z-index: 5;
+
 }
 
 .cafe-accessory {
@@ -664,67 +871,103 @@ height: 120px;
 object-fit: contain;
 
 animation:
+
 accessoryAppear 0.5s ease;
+
+filter:
+
+drop-shadow(3px 3px 2px rgba(0,0,0,0.18));
+
 }
+
+/* FLOWERS */
 
 .cafe-accessory:nth-child(1) {
 
 left: 8%;
 
 bottom: 12%;
+
 }
+
+/* BOOKSHELF */
 
 .cafe-accessory:nth-child(2) {
 
 right: 8%;
 
 bottom: 18%;
+
 }
+
+/* TEDDY */
 
 .cafe-accessory:nth-child(3) {
 
 left: 35%;
 
 top: 25%;
+
 }
+
+/* POLAROIDS */
 
 .cafe-accessory:nth-child(4) {
 
 right: 30%;
 
 bottom: 10%;
+
 }
+
+/* PLANT */
 
 .cafe-accessory:nth-child(5) {
 
 left: 55%;
 
 top: 42%;
+
 }
+
+/* GHOST LAMP */
 
 .cafe-accessory:nth-child(6) {
 
 right: 5%;
 
 top: 20%;
+
 }
 
 @keyframes accessoryAppear {
 
 from {
+
 opacity: 0;
-transform: scale(0.5);
+
+transform:
+
+scale(0.5);
+
 }
 
 to {
+
 opacity: 1;
-transform: scale(1);
-}
+
+transform:
+
+scale(1);
+
 }
 
+}
 
 /* =========================================================
+
 MINI GAME
+
 ========================================================= */
 
 .mini-game {
@@ -742,6 +985,7 @@ border: 3px dashed var(--border);
 border-radius: 20px;
 
 text-align: center;
+
 }
 
 .customer {
@@ -759,13 +1003,37 @@ color: var(--text);
 border: 2px solid var(--border);
 
 border-radius: 15px;
+
 }
+
+/* CUSTOMER CAT */
 
 .customer-face {
 
-font-size: 55px;
+width: 120px;
 
-margin-bottom: 10px;
+height: 120px;
+
+margin: 0 auto 10px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+}
+
+.customer-face img {
+
+width: 120px;
+
+height: 120px;
+
+object-fit: contain;
+
+display: block;
+
 }
 
 #menuButtons {
@@ -773,11 +1041,13 @@ margin-bottom: 10px;
 display: grid;
 
 grid-template-columns:
+
 repeat(auto-fit, minmax(190px, 1fr));
 
 gap: 12px;
 
 margin-top: 20px;
+
 }
 
 .menu-item {
@@ -793,6 +1063,7 @@ border-radius: 12px;
 color: var(--text);
 
 transition: 0.2s;
+
 }
 
 .menu-item:hover {
@@ -802,11 +1073,13 @@ background: var(--button);
 color: white;
 
 transform: translateY(-3px);
+
 }
 
-
 /* =========================================================
+
 SCRAPBOOK
+
 ========================================================= */
 
 .scrapbook {
@@ -826,7 +1099,9 @@ border: 3px solid var(--border);
 border-radius: 10px;
 
 box-shadow:
+
 8px 8px 0 var(--shadow);
+
 }
 
 .scrapbook h1 {
@@ -836,11 +1111,13 @@ text-align: center;
 margin-bottom: 25px;
 
 color: var(--text);
+
 }
 
 .form-group {
 
 margin-bottom: 18px;
+
 }
 
 .form-group label {
@@ -850,10 +1127,13 @@ display: block;
 margin-bottom: 7px;
 
 font-weight: bold;
+
 }
 
 input,
+
 textarea,
+
 select {
 
 width: 100%;
@@ -869,14 +1149,17 @@ background: var(--paper);
 color: var(--text);
 
 font-family: inherit;
+
 }
 
 input::placeholder,
+
 textarea::placeholder {
 
 color: var(--text);
 
 opacity: 0.6;
+
 }
 
 textarea {
@@ -884,6 +1167,7 @@ textarea {
 min-height: 140px;
 
 resize: vertical;
+
 }
 
 .memory-grid {
@@ -893,9 +1177,11 @@ margin-top: 35px;
 display: grid;
 
 grid-template-columns:
+
 repeat(auto-fit, minmax(250px, 1fr));
 
 gap: 20px;
+
 }
 
 .memory-card {
@@ -913,12 +1199,17 @@ border-radius: 8px;
 position: relative;
 
 transform:
+
 rotate(
+
 calc(var(--rotation) * 1deg)
+
 );
 
 box-shadow:
+
 5px 5px 0 var(--shadow);
+
 }
 
 .memory-card h3 {
@@ -926,6 +1217,7 @@ box-shadow:
 margin-bottom: 10px;
 
 color: var(--text);
+
 }
 
 .memory-card img {
@@ -939,6 +1231,7 @@ object-fit: cover;
 border-radius: 5px;
 
 margin: 10px 0;
+
 }
 
 .memory-date {
@@ -946,11 +1239,13 @@ margin: 10px 0;
 font-size: 11px;
 
 opacity: 0.7;
+
 }
 
-
 /* =========================================================
+
 SHOP
+
 ========================================================= */
 
 .shop-grid {
@@ -958,9 +1253,11 @@ SHOP
 display: grid;
 
 grid-template-columns:
+
 repeat(auto-fit, minmax(220px, 1fr));
 
 gap: 20px;
+
 }
 
 .shop-card {
@@ -978,14 +1275,20 @@ padding: 20px;
 text-align: center;
 
 box-shadow:
+
 5px 5px 0 var(--shadow);
+
 }
 
 .shop-card h2,
+
 .shop-card h3 {
 
 color: var(--text);
+
 }
+
+/* REMOVE IMAGE BOX */
 
 .shop-image {
 
@@ -999,20 +1302,32 @@ justify-content: center;
 
 align-items: center;
 
-background: var(--paper-dark);
+background: transparent;
 
-border-radius: 12px;
+border-radius: 0;
 
-overflow: hidden;
+overflow: visible;
+
 }
+
+/* SHOP PREVIEW IMAGE */
 
 .shop-image img {
 
-width: 100%;
+width: 130px;
 
-height: 100%;
+height: 130px;
 
-object-fit: cover;
+object-fit: contain;
+
+display: block;
+
+border-radius: 0;
+
+filter:
+
+drop-shadow(3px 3px 2px rgba(0,0,0,0.15));
+
 }
 
 .locked {
@@ -1020,6 +1335,7 @@ object-fit: cover;
 opacity: 0.55;
 
 filter: grayscale(0.8);
+
 }
 
 .price {
@@ -1029,11 +1345,13 @@ margin: 10px 0;
 font-weight: bold;
 
 color: var(--text);
+
 }
 
-
 /* =========================================================
+
 MILESTONES
+
 ========================================================= */
 
 .milestone-list {
@@ -1045,6 +1363,7 @@ margin: 30px auto;
 display: grid;
 
 gap: 12px;
+
 }
 
 .milestone {
@@ -1064,6 +1383,7 @@ display: flex;
 justify-content: space-between;
 
 gap: 15px;
+
 }
 
 .milestone.unlocked {
@@ -1071,16 +1391,19 @@ gap: 15px;
 background: var(--accent);
 
 border-color: var(--border-dark);
+
 }
 
 .milestone strong {
 
 display: block;
+
 }
 
-
 /* =========================================================
+
 MEMORY POPUP
+
 ========================================================= */
 
 .memory-popup {
@@ -1100,10 +1423,13 @@ align-items: center;
 padding: 20px;
 
 background:
+
 rgba(40, 30, 30, 0.65);
 
 animation:
+
 fadeIn 0.3s;
+
 }
 
 .memory-popup-inner {
@@ -1125,15 +1451,19 @@ border-radius: 20px;
 text-align: center;
 
 box-shadow:
+
 10px 10px 0 var(--shadow);
+
 }
 
 .memory-popup-inner h1,
+
 .memory-popup-inner h2 {
 
 margin-bottom: 15px;
 
 color: var(--text);
+
 }
 
 .memory-popup-inner p {
@@ -1141,6 +1471,7 @@ color: var(--text);
 line-height: 1.8;
 
 margin-bottom: 15px;
+
 }
 
 .popup-icon {
@@ -1148,27 +1479,35 @@ margin-bottom: 15px;
 font-size: 45px;
 
 margin-bottom: 10px;
+
 }
 
 .memory-popup-inner button {
 
 margin-top: 15px;
+
 }
 
 @keyframes fadeIn {
 
 from {
+
 opacity: 0;
+
 }
 
 to {
+
 opacity: 1;
-}
+
 }
 
+}
 
 /* =========================================================
+
 LET GO BUTTON
+
 ========================================================= */
 
 .let-go-btn {
@@ -1178,11 +1517,13 @@ margin-top: 15px;
 padding: 9px 16px;
 
 border:
+
 2px solid var(--button-dark);
 
 border-radius: 10px;
 
 background:
+
 var(--button);
 
 color: white;
@@ -1192,31 +1533,39 @@ font-family: inherit;
 cursor: pointer;
 
 transition: 0.2s ease;
+
 }
 
 .let-go-btn:hover {
 
 background:
+
 var(--accent);
 
 color:
+
 var(--text);
 
 transform:
+
 translateY(-2px);
+
 }
 
-
 /* =========================================================
+
 LET GO MEMORY ANIMATION
+
 ========================================================= */
 
 .memory-card.let-go {
 
 animation:
+
 memoryLetGo 1.8s ease-in forwards;
 
 pointer-events: none;
+
 }
 
 @keyframes memoryLetGo {
@@ -1226,12 +1575,17 @@ pointer-events: none;
 opacity: 1;
 
 transform:
+
 translateY(0)
+
 rotate(0deg)
+
 scale(1);
 
 filter:
+
 brightness(1);
+
 }
 
 35% {
@@ -1239,12 +1593,17 @@ brightness(1);
 opacity: 1;
 
 transform:
+
 translateY(-20px)
+
 rotate(-2deg)
+
 scale(1.03);
 
 filter:
+
 brightness(1.15);
+
 }
 
 65% {
@@ -1252,12 +1611,17 @@ brightness(1.15);
 opacity: 0.8;
 
 transform:
+
 translateY(-55px)
+
 rotate(3deg)
+
 scale(0.98);
 
 filter:
+
 brightness(1.3);
+
 }
 
 100% {
@@ -1265,18 +1629,25 @@ brightness(1.3);
 opacity: 0;
 
 transform:
+
 translateY(-120px)
+
 rotate(8deg)
+
 scale(0.7);
 
 filter:
+
 brightness(1.8);
-}
+
 }
 
+}
 
 /* =========================================================
+
 RELEASE PARTICLES
+
 ========================================================= */
 
 .release-particle {
@@ -1290,6 +1661,7 @@ height: 7px;
 border-radius: 50%;
 
 background:
+
 var(--accent);
 
 pointer-events: none;
@@ -1297,7 +1669,9 @@ pointer-events: none;
 z-index: 1000;
 
 animation:
+
 releaseParticle 1.4s ease-out forwards;
+
 }
 
 @keyframes releaseParticle {
@@ -1307,8 +1681,11 @@ releaseParticle 1.4s ease-out forwards;
 opacity: 1;
 
 transform:
+
 translate(0, 0)
+
 scale(1);
+
 }
 
 100% {
@@ -1316,17 +1693,25 @@ scale(1);
 opacity: 0;
 
 transform:
+
 translate(
+
 var(--particle-x),
+
 var(--particle-y)
+
 )
+
 scale(0);
-}
+
 }
 
+}
 
 /* =========================================================
+
 RELEASE SYMBOL
+
 ========================================================= */
 
 .release-symbol {
@@ -1340,10 +1725,13 @@ z-index: 1001;
 font-size: 24px;
 
 color:
+
 var(--border);
 
 animation:
+
 releaseSymbol 1.5s ease-out forwards;
+
 }
 
 @keyframes releaseSymbol {
@@ -1353,8 +1741,11 @@ releaseSymbol 1.5s ease-out forwards;
 opacity: 0;
 
 transform:
+
 translateY(0)
+
 scale(0.5);
+
 }
 
 30% {
@@ -1362,8 +1753,11 @@ scale(0.5);
 opacity: 1;
 
 transform:
+
 translateY(-20px)
+
 scale(1);
+
 }
 
 100% {
@@ -1371,14 +1765,19 @@ scale(1);
 opacity: 0;
 
 transform:
+
 translateY(-130px)
+
 scale(0.3);
-}
+
 }
 
+}
 
 /* =========================================================
+
 MEMORY CREATION PARTICLES
+
 ========================================================= */
 
 .memory-particle {
@@ -1392,10 +1791,13 @@ pointer-events: none;
 z-index: 1500;
 
 color:
+
 var(--accent);
 
 animation:
+
 memoryParticle 1.5s ease-out forwards;
+
 }
 
 @keyframes memoryParticle {
@@ -1405,8 +1807,11 @@ memoryParticle 1.5s ease-out forwards;
 opacity: 1;
 
 transform:
+
 translateY(0)
+
 scale(1);
+
 }
 
 100% {
@@ -1414,120 +1819,149 @@ scale(1);
 opacity: 0;
 
 transform:
+
 translateY(-100px)
+
 scale(0.2);
-}
+
 }
 
+}
 
 /* =========================================================
+
 THEME-SPECIFIC CAFÉ ATMOSPHERE
+
 ========================================================= */
 
+/* COZY */
 
-/* RAIN */
+body.theme-cozy .cafe-room {
+
+background:
+
+var(--paper-dark);
+
+}
+
+/* RAINY */
 
 body.theme-rainy .cafe-room {
 
 background:
-linear-gradient(
-135deg,
-#8299a5,
-#cbd9de
-);
-}
 
+#8299a5;
+
+}
 
 /* GARDEN */
 
 body.theme-garden .cafe-room {
 
 background:
-linear-gradient(
-135deg,
-#91ad78,
-#e0ead0
-);
-}
 
+#91ad78;
+
+}
 
 /* VINTAGE */
 
 body.theme-vintage .cafe-room {
 
 background:
-linear-gradient(
-135deg,
-#a9845f,
-#ead5b6
-);
-}
 
+#a9845f;
+
+}
 
 /* MIDNIGHT */
 
 body.theme-midnight .cafe-room {
 
 background:
-linear-gradient(
-135deg,
-#22253a,
-#575273
-);
-}
 
+#40366b;
+
+}
 
 /* AFTERLIFE */
 
 body.theme-afterlife .cafe-room {
 
 background:
-linear-gradient(
-135deg,
-#201c29,
-#6e5a76
-);
+
+#4f365b;
+
 }
 
-
 /* =========================================================
+
 GENERAL THEME TRANSITIONS
+
 ========================================================= */
 
 body,
+
 .topbar,
+
 .main-nav a,
+
 .paper,
+
 .hero,
+
 .cafe-room,
+
 .cafe-sign,
+
 .mini-game,
+
 .customer,
+
 .menu-item,
+
 .scrapbook,
+
 .memory-card,
+
 .shop-card,
+
 .shop-image,
+
 .milestone,
+
 .memory-popup-inner,
+
 input,
+
 textarea,
+
 select,
+
 button,
+
 .btn,
+
 .coins {
 
 transition:
+
 background-color 0.5s ease,
+
 background 0.5s ease,
+
 border-color 0.5s ease,
+
 color 0.5s ease,
+
 box-shadow 0.5s ease;
+
 }
 
-
 /* =========================================================
+
 RESPONSIVE
+
 ========================================================= */
 
 @media (max-width: 650px) {
@@ -1537,6 +1971,7 @@ RESPONSIVE
 flex-direction: column;
 
 gap: 10px;
+
 }
 
 .hero {
@@ -1544,13 +1979,17 @@ gap: 10px;
 margin-top: 30px;
 
 padding: 35px 20px;
+
 }
 
 .cafe-room,
+
 .cafe-background-placeholder,
+
 .cafe-background {
 
 min-height: 420px;
+
 }
 
 .cafe-sign {
@@ -1560,20 +1999,141 @@ font-size: 15px;
 width: 80%;
 
 text-align: center;
+
 }
 
 .memory-popup-inner {
 
 padding: 25px;
+
 }
 
 .memory-grid {
 
 grid-template-columns: 1fr;
+
 }
 
 .shop-grid {
 
 grid-template-columns: 1fr;
+
 }
+
+.cafe-accessory {
+
+width: 90px;
+
+height: 90px;
+
+}
+
+.customer-face,
+
+.customer-face img {
+
+width: 90px;
+
+height: 90px;
+
+}
+
+}
+/* Rainy */
+body.theme-rainy .cafe-room::after {
+  background: rgba(70, 130, 180, 0.30);
+}
+
+/* Garden */
+body.theme-garden .cafe-room::after {
+  background: rgba(80, 160, 90, 0.25);
+}
+
+/* Vintage */
+body.theme-vintage .cafe-room::after {
+  background: rgba(150, 95, 45, 0.28);
+}
+
+/* Midnight */
+body.theme-midnight .cafe-room::after {
+  background: rgba(70, 45, 120, 0.40);
+}
+
+/* Afterlife */
+body.theme-afterlife .cafe-room::after {
+  background: rgba(50, 25, 80, 0.45);
+}
+.cafe-room::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ---------- MIDNIGHT STARS ---------- */
+
+body.theme-midnight .cafe-room::before {
+  content: "✦   ·      ✧        ·   ✦     ·        ✧    ·   ✦";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 20px;
+  line-height: 75px;
+  letter-spacing: 18px;
+  padding: 10px 20px;
+
+  text-shadow:
+    0 0 5px white,
+    0 0 12px #bca8ff;
+
+  animation: twinkle 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- AFTERLIFE GHOSTS ---------- */
+
+body.theme-afterlife .cafe-room::before {
+  content: "👻        ·     👻             ·        👻";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+
+  font-size: 28px;
+  line-height: 110px;
+  letter-spacing: 35px;
+  padding: 20px;
+
+  opacity: 0.75;
+
+  animation: ghostFloat 4s ease-in-out infinite;
+}
+
+@keyframes ghostFloat {
+  0% {
+    transform: translateY(8px);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: translateY(-8px);
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: translateY(8px);
+    opacity: 0.45;
+  }
 }

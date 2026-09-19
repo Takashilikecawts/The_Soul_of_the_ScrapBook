@@ -1,788 +1,546 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+  <title>The Soul of the Scrapbook - Café</title>
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
-<title>My Café</title>
-
-<link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-<header class="topbar">
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
 
-<h1>☕ My Café</h1>
+  <header class="topbar">
 
-<div class="coins">
-✦ <span class="coin-count">0</span>
-</div>
+    <h1>The Soul of the Scrapbook</h1>
 
-</header>
+    <div class="coins">
+      🪙 <span id="coinDisplay">0</span>
+    </div>
 
+  </header>
 
-<nav class="main-nav">
 
-<a href="index.html">Home</a>
+  <!-- =====================================================
+       NAVIGATION
+  ====================================================== -->
 
-<a href="cafe.html">My Café</a>
+  <nav class="main-nav">
 
-<a href="scrapbook.html">Scrapbook</a>
+    <a href="index.html">Home</a>
 
-<a href="Shop.html">Shop</a>
+    <a href="cafe.html">Café</a>
 
-<a href="afterlife.html">Truth</a>
+    <a href="scrapbook.html">Scrapbook</a>
 
-</nav>
+    <a href="Shop.html">Shop</a>
 
+    <a href="afterlife.html">Afterlife</a>
 
-<main class="page-container">
+  </nav>
 
 
-<h1 class="section-title">
-Your Café
-</h1>
+  <!-- =====================================================
+       MAIN CONTENT
+  ====================================================== -->
 
+  <main class="page-container">
 
-<!-- CAFÉ -->
+    <h2 class="section-title">
+      The Soul Café
+    </h2>
 
-<section class="cafe-room">
 
-<div class="cafe-sign">
-The Soul of the Scrapbook
-</div>
+    <!-- ===================================================
+         CAFÉ ROOM
+    ==================================================== -->
 
+    <section class="cafe-room">
 
-<!--
+      <!-- Main café picture -->
 
-IMAGE TEMPLATE
+      <img
+        src="images/cafe.png"
+        class="cafe-background"
+        alt="Pixel art café""
+      >
 
-Replace this entire div with:
 
-<img
-src="images/cafe.png"
-class="cafe-background"
->
+      <!-- Café sign -->
 
--->
+      <div class="cafe-sign">
+        The Soul of the Scrapbook
+      </div>
 
-<div class="cafe-background-placeholder">
 
-YOUR CAFÉ IMAGE
+      <!-- Purchased/equipped accessories appear here -->
 
-</div>
+      <div id="accessoryDisplay"></div>
 
+    </section>
 
-<!-- SHOP ACCESSORIES APPEAR HERE -->
 
-<div id="accessoryDisplay"></div>
+    <!-- ===================================================
+         CUSTOMER MINI GAME
+    ==================================================== -->
 
-</section>
+    <section class="mini-game">
 
+      <h2>Welcome to the Café</h2>
 
-<!-- CUSTOMER GAME -->
+      <p>
+        Serve the customer their requested drink.
+      </p>
 
-<section class="mini-game">
 
-<h2>
-Today's Customer
-</h2>
+      <!-- Customer appears here -->
 
+      <div id="customerOrder">
+        Loading...
+      </div>
 
-<div id="customerOrder">
 
-Loading...
+      <!-- Menu buttons -->
 
-</div>
+      <div id="menuButtons"></div>
 
 
-<p>
-Choose what the customer ordered:
-</p>
+      <!-- Result -->
 
+      <p id="gameResult"></p>
 
-<div id="menuButtons"></div>
+    </section>
 
+  </main>
 
-<br>
 
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
 
-<button
-class="btn secondary"
-onclick="createCustomer()"
->
-New Customer
-</button>
+  <script>
 
-</section>
+    /* =====================================================
+       GAME DATA
+    ====================================================== */
 
+    const orders = [
 
-<!-- QUICK LINKS -->
+      {
+        name: "Coffee",
+        icon: "☕",
+        reward: 100
+      },
 
-<section class="paper center">
+      {
+        name: "Tea",
+        icon: "🍵",
+        reward: 120
+      },
 
-<h2>
-Your Café
-</h2>
+      {
+        name: "Hot Chocolate",
+        icon: "🍫",
+        reward: 150
+      },
 
-<br>
+      {
+        name: "Strawberry Milk",
+        icon: "🍓",
+        reward: 130
+      },
 
-<p>
-Memories:
-<strong id="memoryCount">0</strong>
-</p>
+      {
+        name: "Matcha",
+        icon: "🍵",
+        reward: 180
+      },
 
-<br>
+      {
+        name: "Lemon Tea",
+        icon: "🍋",
+        reward: 140
+      }
 
-<a
-href="scrapbook.html"
-class="btn"
->
-Write a Memory
-</a>
+    ];
 
-</section>
 
+    /* =====================================================
+       GAME STATE
+    ====================================================== */
 
-</main>
+    function getGame() {
 
+      const saved =
+        localStorage.getItem("soulScrapbookGame");
 
-<script>
+      if (saved) {
 
-/* =========================================================
-GAME DATA
-========================================================= */
+        return JSON.parse(saved);
 
-const defaultGame = {
+      }
 
-coins: 0,
 
-memories: [],
+      const newGame = {
 
-unlockedThemes: ["cozy"],
+        coins: 0,
 
-ownedAccessories: [],
+        equippedTheme: "cozy",
 
-equippedTheme: "cozy",
+        ownedThemes: ["cozy"],
 
-equippedAccessories: [],
+        ownedAccessories: [],
 
-milestones: [],
+        equippedAccessories: []
 
-afterlifeUnlocked: false
+      };
 
-};
 
+      localStorage.setItem(
+        "soulScrapbookGame",
+        JSON.stringify(newGame)
+      );
 
-function getGame() {
 
-const saved =
-localStorage.getItem(
-"soulScrapbookGame"
-);
+      return newGame;
 
-if (!saved) {
+    }
 
-localStorage.setItem(
-"soulScrapbookGame",
-JSON.stringify(defaultGame)
-);
 
-return structuredClone(defaultGame);
+    function saveGame(game) {
 
-}
+      localStorage.setItem(
+        "soulScrapbookGame",
+        JSON.stringify(game)
+      );
 
-return JSON.parse(saved);
-}
+    }
 
 
-function saveGame(game) {
+    /* =====================================================
+       COINS
+    ====================================================== */
 
-localStorage.setItem(
-"soulScrapbookGame",
-JSON.stringify(game)
-);
+    function updateCoins() {
 
-}
+      const game = getGame();
 
+      const coinDisplay =
+        document.getElementById("coinDisplay");
 
-/* =========================================================
-COINS
-========================================================= */
+      if (coinDisplay) {
 
-function addCoins(amount) {
+        coinDisplay.textContent = game.coins;
 
-const game = getGame();
+      }
 
-game.coins += amount;
+    }
 
-checkMilestones(game);
 
-saveGame(game);
+    /* =====================================================
+       CUSTOMER ORDER
+    ====================================================== */
 
-updateUI();
+    let currentOrder;
 
-}
 
+    function newOrder() {
 
-/* =========================================================
-MILESTONES
-========================================================= */
+      currentOrder =
+        orders[
+          Math.floor(
+            Math.random() * orders.length
+          )
+        ];
 
-const milestones = [
 
-[
-1000,
-"Something about this café feels strangely familiar."
-],
+      const customerOrder =
+        document.getElementById("customerOrder");
 
-[
-5000,
-"A scrapbook page appears that you don't remember writing."
-],
 
-[
-10000,
-"One of your companions seems to remember you."
-],
+      customerOrder.innerHTML = `
 
-[
-25000,
-"You remember something about the day of the accident."
-],
+        <div class="customer">
 
-[
-50000,
-"The café doesn't feel like a place you own anymore."
-],
+          <div class="customer-face">
 
-[
-75000,
-"You finally realize the accident may be connected to the café."
-],
+            <img
+              src="images/cat.png"
+              alt="Café customer"
+              onerror="this.style.display='none'"
+            >
 
-[
-100000,
-"You remember everything. You never woke up."
-]
+          </div>
 
-];
+          <p>
+            I'd like a
+            <strong>
+              ${currentOrder.icon}
+              ${currentOrder.name}
+            </strong>
+            please!
+          </p>
 
+        </div>
 
-function checkMilestones(game) {
+      `;
 
-milestones.forEach(([amount, message]) => {
 
-if (
-game.coins >= amount &&
-!game.milestones.includes(amount)
-) {
+      createMenu();
 
-game.milestones.push(amount);
+    }
 
-saveGame(game);
 
-showMemoryMessage(
-message
-);
+    /* =====================================================
+       MENU
+    ====================================================== */
 
-}
+    function createMenu() {
 
-});
+      const menu =
+        document.getElementById("menuButtons");
 
+      menu.innerHTML = "";
 
-if (
-game.coins >= 100000 &&
-!game.afterlifeUnlocked
-) {
 
-game.afterlifeUnlocked = true;
+      /* Shuffle the orders */
 
-if (
-!game.unlockedThemes.includes(
-"afterlife"
-)
-) {
+      const choices = [...orders]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 4);
 
-game.unlockedThemes.push(
-"afterlife"
-);
 
-}
+      /* Make sure the correct answer is included */
 
-saveGame(game);
+      if (
+        !choices.some(
+          item => item.name === currentOrder.name
+        )
+      ) {
 
-setTimeout(
-showEnding,
-800
-);
+        choices[
+          Math.floor(
+            Math.random() * choices.length
+          )
+        ] = currentOrder;
 
-}
+      }
 
-}
 
+      choices.forEach(item => {
 
-/* =========================================================
-POPUP
-========================================================= */
+        const button =
+          document.createElement("button");
 
-function showMemoryMessage(message) {
+        button.className = "menu-item";
 
-const popup =
-document.createElement("div");
+        button.innerHTML = `
+          ${item.icon}
+          ${item.name}
+        `;
 
-popup.className =
-"memory-popup";
 
-popup.innerHTML = `
+        button.onclick = () => {
 
-<div class="memory-popup-inner">
+          serveCustomer(item);
 
-<div class="popup-icon">
-✦
-</div>
+        };
 
-<h2>
-Memory Unlocked
-</h2>
 
-<p>
-${message}
-</p>
+        menu.appendChild(button);
 
-<button
-onclick="this.closest('.memory-popup').remove()"
->
-Continue
-</button>
+      });
 
-</div>
+    }
 
-`;
 
-document.body.appendChild(popup);
+    /* =====================================================
+       SERVE CUSTOMER
+    ====================================================== */
 
-}
+    function serveCustomer(item) {
 
+      const result =
+        document.getElementById("gameResult");
 
-/* =========================================================
-SECRET ENDING
-========================================================= */
 
-function showEnding() {
+      const game = getGame();
 
-const popup =
-document.createElement("div");
 
-popup.className =
-"memory-popup";
+      if (item.name === currentOrder.name) {
 
-popup.innerHTML = `
+        game.coins += currentOrder.reward;
 
-<div class="memory-popup-inner">
+        saveGame(game);
 
-<div class="popup-icon">
-☾
-</div>
+        updateCoins();
 
-<h1>
-The Final Memory
-</h1>
 
-<p>
-You remember the accident.
-</p>
+        result.innerHTML =
+          `Correct! You earned ${currentOrder.reward} coins.`;
 
-<p>
-You never woke up in the world
-you remembered.
-</p>
 
-<p>
-The café was waiting for you
-on the other side.
-</p>
+        setTimeout(() => {
 
-<p>
-And your strange little employees?
-They were souls waiting to welcome you.
-</p>
+          result.innerHTML = "";
 
-<h2>
-Welcome to the Afterlife Café.
-</h2>
+          newOrder();
 
-<button
-onclick="location.href='ghost-cafe.html'"
->
-Enter
-</button>
+        }, 1200);
 
-</div>
 
-`;
+      } else {
 
-document.body.appendChild(popup);
+        result.innerHTML =
+          "That's not what the customer ordered!";
 
-}
 
+        setTimeout(() => {
 
-/* =========================================================
-CUSTOMER MINI GAME
-========================================================= */
+          result.innerHTML = "";
 
-const menu = [
+        }, 1200);
 
-{
-name: "Golden Hour Latte",
-icon: "☕",
-reward: 150
-},
+      }
 
-{
-name: "Rainy Day Cocoa",
-icon: "🍫",
-reward: 200
-},
+    }
 
-{
-name: "Memory Cake",
-icon: "🍰",
-reward: 250
-},
 
-{
-name: "Garden Tea",
-icon: "🌿",
-reward: 175
-},
+    /* =====================================================
+       ACCESSORIES
+    ====================================================== */
 
-{
-name: "Midnight Coffee",
-icon: "🌙",
-reward: 300
-}
+    const accessoryImages = {
 
-];
+      flowers:
+        "images/flowers.png",
 
+      bookshelf:
+        "images/bookshelf.png",
 
-let currentOrder = null;
+      teddy:
+        "images/teddy.png",
 
+      polaroids:
+        "images/polaroids.png",
 
-function createCustomer() {
+      plant:
+        "images/plant.png",
 
-currentOrder =
-menu[
-Math.floor(
-Math.random() *
-menu.length
-)
-];
+      ghostlamp:
+        "images/ghostlamp.png"
 
+    };
 
-document.getElementById(
-"customerOrder"
-).innerHTML = `
 
-<div class="customer">
+    function renderAccessories() {
 
-<div class="customer-face">
-☺
-</div>
+      const game = getGame();
 
-<p>
-I'd like a
-<strong>
-${currentOrder.icon}
-${currentOrder.name}
-</strong>
-please!
-</p>
+      const display =
+        document.getElementById(
+          "accessoryDisplay"
+        );
 
-</div>
 
-`;
+      display.innerHTML = "";
 
 
-createMenuButtons();
+      game.equippedAccessories.forEach(
+        id => {
 
-}
+          if (!accessoryImages[id]) {
+            return;
+          }
 
 
-function createMenuButtons() {
+          const img =
+            document.createElement("img");
 
-const container =
-document.getElementById(
-"menuButtons"
-);
 
-container.innerHTML = "";
+          img.src =
+            accessoryImages[id];
 
 
-menu.forEach(item => {
+          img.className =
+            "cafe-accessory";
 
-const button =
-document.createElement(
-"button"
-);
 
-button.className =
-"menu-item";
+          img.alt =
+            id;
 
 
-button.innerHTML = `
+          img.onerror =
+            function() {
 
-${item.icon}
-${item.name}
+              this.style.display = "none";
 
-`;
+            };
 
 
-button.onclick = function() {
+          display.appendChild(img);
 
-if (
-item.name ===
-currentOrder.name
-) {
+        }
+      );
 
-addCoins(
-item.reward
-);
+    }
 
-createParticles();
 
-alert(
-"Correct order! +" +
-item.reward +
-" coins"
-);
+    /* =====================================================
+       THEME
+    ====================================================== */
 
-createCustomer();
+    function applyTheme() {
 
-} else {
+      const game = getGame();
 
-alert(
-"Oops! That's not what they ordered."
-);
 
-}
+      /* Remove old theme classes */
 
-};
+      document.body.classList.remove(
+        "theme-cozy",
+        "theme-rainy",
+        "theme-garden",
+        "theme-vintage",
+        "theme-midnight",
+        "theme-afterlife"
+      );
 
 
-container.appendChild(
-button
-);
+      /* Add current theme */
 
-});
+      document.body.classList.add(
+        "theme-" + game.equippedTheme
+      );
 
-}
+    }
 
 
-/* =========================================================
-PARTICLES
-========================================================= */
+    /* =====================================================
+       START GAME
+    ====================================================== */
 
-function createParticles() {
+    function startCafe() {
 
-for (
-let i = 0;
-i < 20;
-i++
-) {
+      applyTheme();
 
-const particle =
-document.createElement(
-"div"
-);
+      updateCoins();
 
-particle.className =
-"memory-particle";
+      renderAccessories();
 
-particle.textContent =
-"✦";
+      newOrder();
 
-particle.style.left =
-Math.random() * 100 + "vw";
+    }
 
-particle.style.top =
-Math.random() * 100 + "vh";
 
-document.body.appendChild(
-particle
-);
+    startCafe();
 
-setTimeout(
-() => particle.remove(),
-1500
-);
+  </script>
 
-}
-
-}
-
-
-/* =========================================================
-ACCESSORIES
-========================================================= */
-
-const accessoryImages = {
-
-flowers:
-"images/flowers.png",
-
-bookshelf:
-"images/bookshelf.png",
-
-teddy:
-"images/teddy.png",
-
-polaroids:
-"images/polaroids.png",
-
-plant:
-"images/plant.png",
-
-ghostlamp:
-"images/ghostlamp.png"
-
-};
-
-
-function renderAccessories() {
-
-const game = getGame();
-
-const display =
-document.getElementById(
-"accessoryDisplay"
-);
-
-display.innerHTML = "";
-
-
-game.equippedAccessories
-.forEach(id => {
-
-const img =
-document.createElement(
-"img"
-);
-
-img.src =
-accessoryImages[id];
-
-img.className =
-"cafe-accessory";
-
-img.onerror =
-function() {
-
-this.style.display =
-"none";
-
-};
-
-display.appendChild(
-img
-);
-
-});
-
-}
-
-
-/* =========================================================
-THEME
-========================================================= */
-
-function applyTheme() {
-
-const game = getGame();
-
-document.body.classList.add(
-"theme-" +
-game.equippedTheme
-);
-
-}
-
-
-function updateUI() {
-
-const game = getGame();
-
-document
-.querySelectorAll(
-".coin-count"
-)
-.forEach(el => {
-
-el.textContent =
-game.coins.toLocaleString();
-
-});
-
-
-document.getElementById(
-"memoryCount"
-).textContent =
-game.memories.length;
-
-}
-
-
-applyTheme();
-
-renderAccessories();
-
-updateUI();
-
-createCustomer();
-
-</script>
-<script>
-
-function applySavedTheme() {
-
-const game =
-JSON.parse(
-localStorage.getItem(
-"soulScrapbookGame"
-)
-) || {};
-
-const theme =
-game.equippedTheme ||
-"cozy";
-
-document.body.classList.remove(
-"theme-cozy",
-"theme-rainy",
-"theme-garden",
-"theme-vintage",
-"theme-midnight",
-"theme-afterlife"
-);
-
-document.body.classList.add(
-"theme-" + theme
-);
-}
-
-applySavedTheme();
-
-</script>
 </body>
-
 </html>
