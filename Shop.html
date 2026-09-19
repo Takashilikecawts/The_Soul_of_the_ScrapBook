@@ -758,23 +758,7 @@ function getGame() {
   return newGame;
 }
 
-function applySavedTheme() {
-  const game = getGame();
 
-  document.body.classList.remove(
-    "theme-cozy",
-    "theme-rainy",
-    "theme-garden",
-    "theme-vintage",
-    "theme-midnight",
-    "theme-afterlife"
-  );
-
-  const theme = game.equippedTheme || "cozy";
-  document.body.classList.add("theme-" + theme);
-}
-
-applySavedTheme();
 </script>
 </body>
 
