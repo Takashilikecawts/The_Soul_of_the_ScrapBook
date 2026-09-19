@@ -707,37 +707,6 @@ applySavedTheme();
 }
 </script>
 
-
-function applySavedTheme() {
-
-const game =
-JSON.parse(
-localStorage.getItem(
-"soulScrapbookGame"
-)
-) || {};
-
-const theme =
-game.equippedTheme ||
-"cozy";
-
-document.body.classList.remove(
-"theme-cozy",
-"theme-rainy",
-"theme-garden",
-"theme-vintage",
-"theme-midnight",
-"theme-afterlife"
-);
-
-document.body.classList.add(
-"theme-" + theme
-);
-}
-
-applySavedTheme();
-
-</script>
 <script>
 function getGame() {
   const saved = localStorage.getItem("soulScrapbookGame");
@@ -758,8 +727,26 @@ function getGame() {
   return newGame;
 }
 
+function applySavedTheme() {
+  const game = getGame();
+
+  document.body.classList.remove(
+    "theme-cozy",
+    "theme-rainy",
+    "theme-garden",
+    "theme-vintage",
+    "theme-midnight",
+    "theme-afterlife"
+  );
+
+  const theme = game.equippedTheme || "cozy";
+  document.body.classList.add("theme-" + theme);
+}
+
+applySavedTheme();
 
 </script>
+
 </body>
 
 </html>
