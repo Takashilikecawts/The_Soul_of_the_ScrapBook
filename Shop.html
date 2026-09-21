@@ -1,151 +1,130 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Café Shop</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
 <header class="topbar">
-
 <h1>🛍️ Café Shop</h1>
-
-<div class="coins">
-✦ <span class="coin-count">0</span>
-</div>
-
+<div class="coins">✦ <span class="coin-count">0</span></div>
 </header>
 
-
 <nav class="main-nav">
-
 <a href="index.html">Home</a>
-
 <a href="cafe.html">My Café</a>
-
 <a href="scrapbook.html">Scrapbook</a>
-
 <a href="Shop.html">Shop</a>
-
 <a href="afterlife.html">Truth</a>
-
 </nav>
-
 
 <main class="page-container">
 
+<h1 class="section-title">Café Themes</h1>
+<div class="shop-grid" id="themeShop"></div>
 
-<h1 class="section-title">
-Café Themes
-</h1>
-
-
-<div
-class="shop-grid"
-id="themeShop"
-></div>
-
-
-<h1 class="section-title">
-Accessories
-</h1>
-
-
-<div
-class="shop-grid"
-id="accessoryShop"
-></div>
-
+<h1 class="section-title">Accessories</h1>
+<div class="shop-grid" id="accessoryShop"></div>
 
 <section class="paper center">
-
-<h2>
-Your Progress
-</h2>
-
+<h2>Your Progress</h2>
 <br>
-
-<p>
-Coins:
-<strong class="coin-count">
-0
-</strong>
-</p>
-
+<p>Coins: <strong class="coin-count">0</strong></p>
 <br>
-
-<p>
-Reach <strong>100,000 coins</strong>
-to discover the secret.
-</p>
-
+<p>Reach <strong>100,000 coins</strong> to discover the secret.</p>
 </section>
-
 
 </main>
 
-
 <script>
 
-/* ---------- GAME ---------- */
-
 const defaultGame = {
-
 coins: 0,
-
 memories: [],
-
 unlockedThemes: ["cozy"],
-
 ownedAccessories: [],
-
 equippedTheme: "cozy",
-
 equippedAccessories: [],
-
 milestones: [],
-
 afterlifeUnlocked: false
-
 };
 
 
+/* =========================
+GAME DATA
+========================= */
+
 function getGame() {
 
-const saved =
-localStorage.getItem(
-"soulScrapbookGame"
+const saved = localStorage.getItem("soulScrapbookGame");
+
+if (saved) {
+
+try {
+
+const oldGame = JSON.parse(saved);
+
+const game = {
+...defaultGame,
+...oldGame,
+
+memories: Array.isArray(oldGame.memories)
+? oldGame.memories
+: [],
+
+unlockedThemes: Array.isArray(oldGame.unlockedThemes)
+? oldGame.unlockedThemes
+: ["cozy"],
+
+ownedAccessories: Array.isArray(oldGame.ownedAccessories)
+? oldGame.ownedAccessories
+: [],
+
+equippedAccessories: Array.isArray(oldGame.equippedAccessories)
+? oldGame.equippedAccessories
+: [],
+
+milestones: Array.isArray(oldGame.milestones)
+? oldGame.milestones
+: [],
+
+equippedTheme: oldGame.equippedTheme || "cozy",
+
+afterlifeUnlocked: oldGame.afterlifeUnlocked || false
+};
+
+if (!game.unlockedThemes.includes("cozy")) {
+game.unlockedThemes.unshift("cozy");
+}
+
+localStorage.setItem(
+"soulScrapbookGame",
+JSON.stringify(game)
 );
 
-if (!saved) {
+return game;
+
+} catch (error) {
 
 localStorage.setItem(
 "soulScrapbookGame",
 JSON.stringify(defaultGame)
 );
 
-return structuredClone(
-defaultGame
-);
-
+return { ...defaultGame };
+}
 }
 
-return JSON.parse(saved);
+localStorage.setItem(
+"soulScrapbookGame",
+JSON.stringify(defaultGame)
+);
 
+return { ...defaultGame };
 }
 
 
@@ -155,13 +134,12 @@ localStorage.setItem(
 "soulScrapbookGame",
 JSON.stringify(game)
 );
-
 }
 
 
-/* =========================================================
+/* =========================
 THEMES
-========================================================= */
+========================= */
 
 const themes = [
 
@@ -170,8 +148,7 @@ id: "cozy",
 name: "Cozy Café",
 price: 0,
 image: "images/cafe.png",
-description:
-"Your original warm café."
+description: "Your original warm café."
 },
 
 {
@@ -179,8 +156,7 @@ id: "rainy",
 name: "Rainy Café",
 price: 1000,
 image: "images/rainy.png",
-description:
-"Warm lights and rain outside."
+description: "Warm lights and rain outside."
 },
 
 {
@@ -188,8 +164,7 @@ id: "garden",
 name: "Garden Café",
 price: 3000,
 image: "images/garden.png",
-description:
-"Flowers, plants and sunlight."
+description: "Flowers, plants and sunlight."
 },
 
 {
@@ -197,8 +172,7 @@ id: "vintage",
 name: "Vintage Café",
 price: 7500,
 image: "images/vintage.png",
-description:
-"A café filled with nostalgia."
+description: "A café filled with nostalgia."
 },
 
 {
@@ -206,8 +180,7 @@ id: "midnight",
 name: "Midnight Café",
 price: 15000,
 image: "images/midnight.png",
-description:
-"A quiet café beneath the stars."
+description: "A quiet café beneath the stars."
 },
 
 {
@@ -215,17 +188,16 @@ id: "afterlife",
 name: "Afterlife Café",
 price: 100000,
 image: "images/afterlife.png",
-description:
-"The café beyond life.",
+description: "The café beyond life.",
 secret: true
 }
 
 ];
 
 
-/* =========================================================
+/* =========================
 ACCESSORIES
-========================================================= */
+========================= */
 
 const accessories = [
 
@@ -274,56 +246,87 @@ image: "images/ghostlamp.png"
 ];
 
 
-/* =========================================================
-THEME SHOP
-========================================================= */
+/* =========================
+APPLY THEME
+========================= */
+
+function applySavedTheme() {
+
+const game = getGame();
+
+document.body.classList.remove(
+"theme-cozy",
+"theme-rainy",
+"theme-garden",
+"theme-vintage",
+"theme-midnight",
+"theme-afterlife"
+);
+
+const theme = game.equippedTheme || "cozy";
+
+document.body.classList.add(
+"theme-" + theme
+);
+}
+
+
+/* =========================
+UPDATE COINS
+========================= */
+
+function updateUI() {
+
+const game = getGame();
+
+document
+.querySelectorAll(".coin-count")
+.forEach(element => {
+
+element.textContent =
+game.coins.toLocaleString();
+
+});
+}
+
+
+/* =========================
+RENDER THEMES
+========================= */
 
 function renderThemes() {
 
 const game = getGame();
 
 const shop =
-document.getElementById(
-"themeShop"
-);
+document.getElementById("themeShop");
 
 shop.innerHTML = "";
-
 
 themes.forEach(theme => {
 
 const unlocked =
-game.unlockedThemes
-.includes(theme.id);
+game.unlockedThemes.includes(theme.id);
 
+/* Secret Afterlife Theme */
 
 if (
 theme.secret &&
-!game.afterlifeUnlocked
+!game.afterlifeUnlocked &&
+!unlocked
 ) {
 
 shop.innerHTML += `
 
-<article class="
-shop-card
-locked
-">
+<article class="shop-card locked">
 
 <div class="shop-image">
-
-<span>
-☾
-</span>
-
+<span>☾</span>
 </div>
 
-<h2>
-??? Café
-</h2>
+<h2>??? Café</h2>
 
-<p>
-A locked memory.
-</p>
+<p>A locked memory.</p>
 
 <div class="price">
 🔒 100,000 coins
@@ -341,6 +344,21 @@ Locked
 `;
 
 return;
+}
+
+
+let buttonText;
+
+if (unlocked) {
+
+buttonText =
+game.equippedTheme === theme.id
+? "Equipped"
+: "Equip";
+
+} else {
+
+buttonText = "Buy";
 
 }
 
@@ -354,31 +372,21 @@ shop.innerHTML += `
 <img
 src="${theme.image}"
 alt="${theme.name}"
-onerror="
-this.style.display='none'
-"
 >
 
 </div>
 
-<h2>
-${theme.name}
-</h2>
+<h2>${theme.name}</h2>
 
-<p>
-${theme.description}
-</p>
+<p>${theme.description}</p>
 
 <div class="price">
 
 ${
 unlocked
-?
-"✓ Unlocked"
-:
-"✦ " +
-theme.price.toLocaleString()
-+
+? "✓ Unlocked"
+: "✦ " +
+theme.price.toLocaleString() +
 " coins"
 }
 
@@ -386,26 +394,9 @@ theme.price.toLocaleString()
 
 <button
 class="btn"
-onclick="
-themeAction('${theme.id}')
-"
+onclick="themeAction('${theme.id}')"
 >
-
-${
-unlocked
-?
-(
-game.equippedTheme ===
-theme.id
-?
-"Equipped"
-:
-"Equip"
-)
-:
-"Buy"
-}
-
+${buttonText}
 </button>
 
 </article>
@@ -417,99 +408,100 @@ theme.id
 }
 
 
+/* =========================
+THEME BUY / EQUIP
+========================= */
+
 function themeAction(id) {
 
 const game = getGame();
 
 const theme =
-themes.find(
-t => t.id === id
-);
+themes.find(item => item.id === id);
+
+if (!theme) return;
 
 
-if (
-game.unlockedThemes
-.includes(id)
-) {
+/* Already unlocked */
+
+if (game.unlockedThemes.includes(id)) {
 
 game.equippedTheme = id;
 
-saveGame(game);
-
-renderThemes();
-
-alert(
-theme.name +
-" equipped!"
-);
-
-return;
-
+if (id === "afterlife") {
+game.afterlifeUnlocked = true;
 }
-
-
-if (
-game.coins <
-theme.price
-) {
-
-alert(
-"You don't have enough coins."
-);
-
-return;
-
-}
-
-
-game.coins -=
-theme.price;
-
-
-game.unlockedThemes.push(
-id
-);
-
-
-game.equippedTheme =
-id;
-
 
 saveGame(game);
 
-renderThemes();
-
+applySavedTheme();
 updateUI();
+renderThemes();
+
+return;
+}
+
+
+/* Not enough coins */
+
+if (game.coins < theme.price) {
+
+alert("You don't have enough coins.");
+
+return;
+}
+
+
+/* Buy */
+
+game.coins -= theme.price;
+
+game.unlockedThemes.push(id);
+
+game.equippedTheme = id;
+
+
+if (id === "afterlife") {
+game.afterlifeUnlocked = true;
+}
+
+
+saveGame(game);
+
+applySavedTheme();
+updateUI();
+renderThemes();
 
 }
 
 
-/* =========================================================
-ACCESSORY SHOP
-========================================================= */
+/* =========================
+RENDER ACCESSORIES
+========================= */
 
 function renderAccessories() {
 
 const game = getGame();
 
 const shop =
-document.getElementById(
-"accessoryShop"
-);
+document.getElementById("accessoryShop");
 
 shop.innerHTML = "";
-
 
 accessories.forEach(item => {
 
 const owned =
-game.ownedAccessories
-.includes(item.id);
-
+game.ownedAccessories.includes(item.id);
 
 const equipped =
-game.equippedAccessories
-.includes(item.id);
+game.equippedAccessories.includes(item.id);
+
+
+const buttonText = owned
+? equipped
+? "Unequip"
+: "Equip"
+: "Buy";
 
 
 shop.innerHTML += `
@@ -521,54 +513,29 @@ shop.innerHTML += `
 <img
 src="${item.image}"
 alt="${item.name}"
-onerror="
-this.style.display='none'
-"
 >
 
 </div>
 
-<h2>
-${item.name}
-</h2>
+<h2>${item.name}</h2>
 
 <div class="price">
 
 ${
 owned
-?
-"✓ Owned"
-:
-"✦ " +
-item.price.toLocaleString()
-+
+? "✓ Owned"
+: "✦ " +
+item.price.toLocaleString() +
 " coins"
 }
 
 </div>
 
-
 <button
 class="btn"
-onclick="
-accessoryAction('${item.id}')
-"
+onclick="accessoryAction('${item.id}')"
 >
-
-${
-owned
-?
-(
-equipped
-?
-"Unequip"
-:
-"Equip"
-)
-:
-"Buy"
-}
-
+${buttonText}
 </button>
 
 </article>
@@ -580,173 +547,86 @@ equipped
 }
 
 
+/* =========================
+ACCESSORY BUY / EQUIP
+========================= */
+
 function accessoryAction(id) {
 
 const game = getGame();
 
 const item =
-accessories.find(
-a => a.id === id
-);
+accessories.find(accessory => accessory.id === id);
 
+if (!item) return;
+
+
+/* Already owned */
+
+if (game.ownedAccessories.includes(id)) {
 
 if (
-game.ownedAccessories
-.includes(id)
-) {
-
-if (
-game.equippedAccessories
-.includes(id)
+game.equippedAccessories.includes(id)
 ) {
 
 game.equippedAccessories =
-game.equippedAccessories
-.filter(
-x => x !== id
+game.equippedAccessories.filter(
+accessoryId => accessoryId !== id
 );
 
 } else {
 
-game.equippedAccessories
-.push(id);
+game.equippedAccessories.push(id);
 
 }
-
 
 saveGame(game);
 
 renderAccessories();
 
 return;
-
 }
 
 
-if (
-game.coins <
-item.price
-) {
+/* Not enough coins */
 
-alert(
-"You don't have enough coins."
-);
+if (game.coins < item.price) {
+
+alert("You don't have enough coins.");
 
 return;
-
 }
 
 
-game.coins -=
-item.price;
+/* Buy */
 
+game.coins -= item.price;
 
-game.ownedAccessories
-.push(id);
+game.ownedAccessories.push(id);
 
-
-game.equippedAccessories
-.push(id);
-
+game.equippedAccessories.push(id);
 
 saveGame(game);
 
-
+updateUI();
 renderAccessories();
 
-updateUI();
-
 }
 
 
-/* ---------- UI ---------- */
-
-function updateUI() {
-
-const game = getGame();
-
-document
-.querySelectorAll(
-".coin-count"
-)
-.forEach(el => {
-
-el.textContent =
-game.coins.toLocaleString();
-
-});
-
-}
-
+/* =========================
+START SHOP
+========================= */
 
 updateUI();
+
+applySavedTheme();
 
 renderThemes();
 
 renderAccessories();
 
-function equipTheme(themeName) {
-
-const game =
-JSON.parse(
-localStorage.getItem(
-"soulScrapbookGame"
-)
-) || {};
-
-game.equippedTheme =
-themeName;
-
-localStorage.setItem(
-"soulScrapbookGame",
-JSON.stringify(game)
-);
-
-applySavedTheme();
-
-}
-</script>
-
-<script>
-function getGame() {
-  const saved = localStorage.getItem("soulScrapbookGame");
-
-  if (saved) {
-    return JSON.parse(saved);
-  }
-
-  const newGame = {
-    coins: 0,
-    equippedTheme: "cozy",
-    ownedThemes: ["cozy"],
-    ownedAccessories: [],
-    equippedAccessories: []
-  };
-
-  localStorage.setItem("soulScrapbookGame", JSON.stringify(newGame));
-  return newGame;
-}
-
-function applySavedTheme() {
-  const game = getGame();
-
-  document.body.classList.remove(
-    "theme-cozy",
-    "theme-rainy",
-    "theme-garden",
-    "theme-vintage",
-    "theme-midnight",
-    "theme-afterlife"
-  );
-
-  const theme = game.equippedTheme || "cozy";
-  document.body.classList.add("theme-" + theme);
-}
-
-applySavedTheme();
-
 </script>
 
 </body>
-
 </html>
